@@ -1,0 +1,4 @@
+.inner_container {
+    width: clamp(310px, 90%, 1200px);
+    background: lightcyan;
+}

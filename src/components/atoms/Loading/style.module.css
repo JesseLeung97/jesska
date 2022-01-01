@@ -1,0 +1,16 @@
+.overlay_container {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    backdrop-filter: blur(10px);
+}
+.animation_container {
+    height: 100px;
+    width: 100px;
+}
+.image_container {
+    max-width: 100%;
+    max-height: 100%;
+}

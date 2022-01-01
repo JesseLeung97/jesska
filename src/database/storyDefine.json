@@ -1,0 +1,25 @@
+{
+    "jessesSocks": {
+        "storyName": "jessesSocks",
+        "scene_1": {
+            "scene": "jessesSocks/scene_1/scene.jpg",
+            "english": "jessesSocks/scene_1/english.png",
+            "japanese": "jessesSocks/scene_1/japanese.png"
+        },
+        "scene_2": {
+            "scene": "jessesSocks/scene_2/scene.jpg",
+            "english": "jessesSocks/scene_2/english.png",
+            "japanese": "jessesSocks/scene_2/japanese.png"
+        },
+        "scene_3": {
+            "scene": "jessesSocks/scene_3/scene.jpg",
+            "english": "jessesSocks/scene_3/english.png",
+            "japanese": "jessesSocks/scene_3/japanese.png"
+        },
+        "scene_4": {
+            "scene": "jessesSocks/scene_4/scene.jpg",
+            "english": "jessesSocks/scene_4/english.png",
+            "japanese": "jessesSocks/scene_4/japanese.png"
+        }
+    }
+}

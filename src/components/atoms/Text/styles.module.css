@@ -1,0 +1,9 @@
+.small {
+    font-size: clamp(10px, 1rem, 18px);
+}
+.medium {
+    font-size: clamp(16px, 1.5rem, 24px);
+}
+.large {
+    font-size: clamp(22px, 2rem, 32px);
+}

@@ -1,0 +1,12 @@
+{
+    "currentLanguage": "japanese",
+    "common": {
+        "siteName": "ジェシカ"
+    },
+    "buttons": {
+        "toggleLanguage": "言語"
+    },
+    "aboutPage": {
+        "navigationButton": "概要"
+    }
+}

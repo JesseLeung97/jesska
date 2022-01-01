@@ -1,0 +1,12 @@
+{
+    "currentLanguage": "english",
+    "common": {
+        "siteName": "Jesska"
+    },
+    "buttons": {
+        "toggleLanguage": "language"
+    },
+    "aboutPage": {
+        "navigationButton": "About"
+    }
+}
