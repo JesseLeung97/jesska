@@ -1,19 +1,10 @@
 .story_viewport {
-    position: relative;
     margin: 0 auto;
-    width: clamp(300px, 70%, 500px);
-    background: lightgrey;
-}
-.story_viewport:after {
-    display: block;
-    content: "";
-    padding-bottom: 100%;
-    background: lightslategray;
 }
 .story_content {
-    position: absolute;
     height: 100%;
     width: 100%;
+    position: relative;
 }
 .is_hidden {
     display: none;

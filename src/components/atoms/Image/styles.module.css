@@ -1,0 +1,25 @@
+.image_outer {
+    position: relative;
+    margin: 0 auto;
+}
+.image_outer:after {
+    display: block;
+    content: "";
+    padding-bottom: 100%;
+}
+.image_inner {
+    height: 100%;
+    width: 100%;
+}
+.small {
+    width: clamp(150px, 70%, 250px);
+}
+.medium {
+    width: clamp(250px, 70%, 400px);
+}
+.large {
+    width: clamp(300px, 70%, 500px);
+}
+.parent_size::after {
+    display: unset;
+}

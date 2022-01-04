@@ -7,6 +7,5 @@ export type TScene = {
 export type TStory = {
     storyNameEnglish: string,
     storyNameJapanese: string,
-    storyLength: number,
     scenes: Array<TScene>
 }

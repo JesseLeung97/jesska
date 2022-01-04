@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import classes from "./styles.module.css";
 import { TLanguages } from "types/localizationTypes";
 import { useLanguage } from "localization/LocalizationContext";
+import { Image } from "components/atoms/Image";
 
 interface SceneTranslationProps {
     englishTranslation: string,
@@ -18,10 +19,10 @@ export const SceneTranslation: React.FC<SceneTranslationProps> = ({
         return (
             <>
                 { currentLanguage === "english" && 
-                    <img className={classes.image_inner} src={englishTranslation}></img>
+                    <Image useParentSizing={true} className={classes.translation_image} image={englishTranslation} size={"large"} />
                 }
                 { currentLanguage === "japanese" && 
-                    <img className={classes.image_inner} src={japaneseTranslation}></img>
+                    <Image useParentSizing={true} className={classes.translation_image} image={japaneseTranslation} size={"large"} />
                 }
             </>
         );

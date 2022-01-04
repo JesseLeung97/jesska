@@ -1,4 +1,6 @@
 .inner_container {
-    width: clamp(310px, 90%, 1200px);
-    background: lightcyan;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-items: center;
 }

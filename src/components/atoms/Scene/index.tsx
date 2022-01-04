@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./style.module.css";
+import { Image } from "components/atoms/Image";
 
 interface SceneProps {
     image: string
@@ -10,10 +11,7 @@ export const Scene: React.FC<SceneProps> = ({
 }) => {
     return (
         <div className={classes.scene_container}>
-            <img
-                className={classes.image_inner} 
-                src={image}>
-            </img>
+            <Image useParentSizing={true} className={classes.scene_image} image={image} size={"large"} />
         </div>
     );
 }

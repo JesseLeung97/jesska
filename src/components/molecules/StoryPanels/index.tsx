@@ -3,6 +3,7 @@ import classes from "./styles.module.css";
 import { Scene } from "components/atoms/Scene";
 import { SceneTranslation } from "components/atoms/SceneTranslation";
 import { TScene } from "types/storyTypes";
+import { ContentWrapper } from "components/atoms/ContentWrapper";
 
 interface StoryPanelsProps {
     scene: TScene,
@@ -22,15 +23,13 @@ export const StoryPanels: React.FC<StoryPanelsProps> = ({
     },[currentSceneIndex]);
 
     return (
-        <div className={`${classes.story_viewport}  ${isHiddenClass}`}>
-            <div className={classes.story_content}>
-                <SceneTranslation
-                    englishTranslation={scene.englishTranslation}
-                    japaneseTranslation={scene.japaneseTranslation}
-                >
-                </SceneTranslation>
-                <Scene image={scene.storyboard}></Scene>
-            </div>
+        <div className={`${classes.story_content} ${isHiddenClass}`}>
+            <SceneTranslation
+                englishTranslation={scene.englishTranslation}
+                japaneseTranslation={scene.japaneseTranslation}
+            >
+            </SceneTranslation>
+            <Scene image={scene.storyboard}></Scene>
         </div>
     );
 }

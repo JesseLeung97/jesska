@@ -1,20 +1,18 @@
 import React, { useState } from "react";
 import classes from "components/organisms/StoryNavigation/styles.module.css";
-
-import { storyReferences } from "database/storyDefine";
-import { StoryNavigationButton } from "components/atoms/StoryNavigationButton";
 import { RouteButton } from "components/atoms/RouteButton";
 import { useLanguage } from "localization/LocalizationContext";
 import { useStoryList } from "globalState/StoryListContext";
+import { useTheme } from "theme/ThemeContext";
 
 interface StoryNavigationProps {
 
 }
 
 export const StoryNavigation: React.FC<StoryNavigationProps> = ({}) => {
-
+    const toggleTheme = useTheme().toggleTheme;
     const language = useLanguage().language;
-    
+    const theme = useTheme().theme;
     const storyList = useStoryList().storyList;
 
     const createNavigationItems = (): React.ReactNode => {
@@ -51,6 +49,7 @@ export const StoryNavigation: React.FC<StoryNavigationProps> = ({}) => {
                 </RouteButton>
                 { createNavigationItems() }
             </div>
+            <button onClick={toggleTheme} >Theme</button>
         </div>
     );
 }

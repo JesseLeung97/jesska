@@ -1,6 +1,5 @@
-import { getStoryList } from "database/api";
 import React, { useState, useContext, useEffect } from "react";
-import { useTheme } from "theme/ThemeContext";
+import { getStoryList } from "database/api";
 import { TFirestoreStory } from "types/databaseTypes";
 
 type TStoryListContext = { storyList: TFirestoreStory[] };

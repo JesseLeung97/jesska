@@ -50,9 +50,10 @@ export const StoryPanelNavigation: React.FC<StoryPanelNavigationProps> = ({
     return (
         <div className={classes.story_navigation_container}>
             <Text
+                isAnimated={true}
                 color="primary"
             >
-                {currentPage}
+                {currentPage + 1}
             </Text>
             <div className={classes.button_container}>
                 <div className={classes.left_button}>
@@ -64,6 +65,5 @@ export const StoryPanelNavigation: React.FC<StoryPanelNavigationProps> = ({
                 </div>
             </div>
         </div>
-       
-    )
+    );
 }

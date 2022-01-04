@@ -4,6 +4,7 @@ import { useTheme } from './theme/ThemeContext';
 import { PageWrapper } from "./components/atoms/PageWrapper";
 import { RouteDefine } from 'routing/RouteDefine';
 import { StoryNavigation } from 'components/organisms/StoryNavigation';
+import { ContentWrapper } from 'components/atoms/ContentWrapper';
 
 const testOnClick = (iter: number) => {
   console.log(iter);
@@ -12,8 +13,10 @@ const testOnClick = (iter: number) => {
 function App() {
   return (
     <PageWrapper>
-      <StoryNavigation />
-      <RouteDefine />
+      <ContentWrapper>
+        <RouteDefine />
+        <StoryNavigation />
+      </ContentWrapper>
     </PageWrapper>
   );
 }

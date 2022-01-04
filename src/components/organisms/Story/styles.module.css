@@ -1,0 +1,8 @@
+.story_panels_container {
+    max-height: 500px;
+    width: clamp(300px, 90%, 500px);
+}
+.story_panels_container::after {
+    content: "";
+    padding-bottom: 100%;
+}

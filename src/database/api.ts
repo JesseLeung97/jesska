@@ -1,10 +1,11 @@
 import { TScene, TStory } from "types/storyTypes";
-import { TFirestoreStory, TSceneGroupReferece, TStoryReference } from "types/databaseTypes";
+import { TFirestoreScene, TFirestoreStory, TSceneGroupReference, TSceneReference, TStoryReference } from "types/databaseTypes";
 import { getDownloadURL } from "firebase/storage";
-import { getDocs, collection, where, query } from "firebase/firestore";
+import { getDocs, collection, where, query, QuerySnapshot, DocumentData } from "firebase/firestore";
 import { firebaseFirestore } from "database/firebase";
+import { CreateSceneJapaneseReference, CreateSceneImageReference, CreateSceneEnglishReference } from "database/storyReferences";
 
-const createSceneGroup = async (sceneGroup: TSceneGroupReferece): Promise<[Array<TScene>, number]> => {
+const createSceneGroup = async (sceneGroup: TSceneGroupReference): Promise<Array<TScene>> => {
     let scenes = Array<TScene>();
     let storyLength = 0;
     for await (const scene of Object.values(sceneGroup)) {
@@ -19,36 +20,69 @@ const createSceneGroup = async (sceneGroup: TSceneGroupReferece): Promise<[Array
         scenes.push(additiveScene);
         storyLength++;
     }
-    return [scenes, storyLength];
-}
-
-export const convertToTStory = async (storyReference: TStoryReference): Promise<TStory> => {
-    const [scenes, storyLength] = await createSceneGroup(storyReference.scenes);
-
-    let story: TStory = {
-        storyNameEnglish: storyReference.storyNameEnglish,
-        storyNameJapanese: storyReference.storyNameJapanese,
-        storyLength: storyLength,
-        scenes: scenes
-    };
-
-    return story;
+    return scenes;
 }
 
 export const getStoryList = async (includeInactive: boolean = false): Promise<TFirestoreStory[]> => {
     let storyList = Array<TFirestoreStory>();
+    const storyCollectionReference = collection(firebaseFirestore, "stories");
 
-    let storyListQuery = query(collection(firebaseFirestore, "stories"), where("isActive", "==", true));
+    let storyListQuery = query(storyCollectionReference, where("isActive", "==", true));
     if (includeInactive) {
-        storyListQuery = query(collection(firebaseFirestore, "stories"));
+        storyListQuery = query(storyCollectionReference);
     }
 
     await getDocs(storyListQuery).then((storyListResponse) => {
         storyListResponse.forEach((doc) => {
-            storyList.push(doc.data() as TFirestoreStory);
+            let story: TFirestoreStory = {
+                ...doc.data() as TFirestoreStory,
+                storyID: doc.id,
+                scenes: query(collection(firebaseFirestore, `stories/${doc.id}/scenes`))
+            }
+            
+            storyList.push(story as TFirestoreStory);
         });
     }).catch((error) => {
         console.log(error);
     });
     return storyList;
 } 
+
+export const createStory = async (firestoreStory: TFirestoreStory): Promise<TStory> => {
+    const sceneReferenceGroup = await convertToSceneGroup(firestoreStory);
+    const scenes = await createSceneGroup(sceneReferenceGroup);
+
+    const story: TStory = {
+        storyNameEnglish: firestoreStory.storyNameEnglish,
+        storyNameJapanese: firestoreStory.storyNameJapanese,
+        scenes: scenes
+    }
+
+    return story;
+} 
+
+export const convertToSceneGroup = async (firestoreStory: TFirestoreStory): Promise<TSceneGroupReference> => {
+    let scenes: TSceneGroupReference = {};
+    await getDocs(firestoreStory.scenes).then(async (sceneList) => {
+        sceneList.docs.forEach((scene) => {
+            const sceneData = scene.data() as TFirestoreScene;
+            const sceneId = scene.id;
+           
+            const additiveScene: TSceneReference = {
+                scene: CreateSceneImageReference(sceneData.scene),
+                english: CreateSceneEnglishReference(sceneData.english),
+                japanese: CreateSceneJapaneseReference(sceneData.japanese)
+            }
+
+            scenes = {
+                ...scenes,
+                [sceneId]: additiveScene
+            }
+
+        });
+    }).catch((error) => {
+        console.log(error);
+    });
+
+    return scenes;
+}

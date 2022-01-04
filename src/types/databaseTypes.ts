@@ -1,3 +1,4 @@
+import { DocumentData, Query } from "firebase/firestore";
 import { StorageReference } from "firebase/storage";
 
 export type TSceneReference = {
@@ -6,7 +7,7 @@ export type TSceneReference = {
     japanese: StorageReference
 }
 
-export type TSceneGroupReferece = {
+export type TSceneGroupReference = {
     [key: string]: TSceneReference
 }
 
@@ -14,7 +15,7 @@ export type TStoryReference = {
     storyUrl: string,
     storyNameEnglish: string,
     storyNameJapanese: string,
-    scenes: TSceneGroupReferece
+    scenes: TSceneGroupReference
 }
 
 export type TFirestoreStory = {
@@ -22,7 +23,15 @@ export type TFirestoreStory = {
     storyDate: string,
     storyNameEnglish: string,
     storyNameJapanese: string,
-    storyUrlExtension: string
+    storyUrlExtension: string,
+    storyID: string,
+    scenes: Query<DocumentData>
+}
+
+export type TFirestoreScene = {
+    scene: string,
+    english: string,
+    japanese: string
 }
 
 export {}

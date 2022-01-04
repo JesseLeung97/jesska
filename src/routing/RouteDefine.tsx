@@ -1,12 +1,35 @@
 import { StoryPanels } from "components/molecules/StoryPanels";
-import React from "react";
-import { Routes, Route } from "react-router-dom";
-import { storyReferences } from "database/storyDefine";
+import React, { useEffect, useState } from "react";
+import { Routes, Route, RouteProps, useLocation } from "react-router-dom";
 import { Story } from "components/organisms/Story";
 import { ErrorPage } from "components/staticPages/ErrorPage";
 import { AboutPage } from "components/staticPages/AboutPage";
+import { useStoryList } from "globalState/StoryListContext";
+import { firebaseFirestore } from "database/firebase";
+import { createStory } from "database/api";
+import { TFirestoreStory } from "types/databaseTypes";
+import { Text } from "components/atoms/Text";
 
 export const RouteDefine: React.FC = () => {
+
+    const storyList = useStoryList().storyList;
+    const [routes, setRoutes] = useState<React.ReactNode>(<></>);
+    const location = useLocation();
+
+    const checkIfStoryExists = (): React.ReactNode => {
+        const storyIndex = storyList.findIndex((story) => location.pathname === `/stories${story.storyUrlExtension}`);
+        if(storyIndex > -1) {
+            const firestoreStory: TFirestoreStory = storyList[storyIndex];
+            return (
+                <Story firestoreStory={firestoreStory}/>
+            );
+        } else {
+            return (
+                <Text>Page couldn't be found</Text>
+            )
+        }
+    }
+
     return (
         <Routes>
             <Route 
@@ -18,8 +41,8 @@ export const RouteDefine: React.FC = () => {
                 element={<AboutPage />}
             />
             <Route 
-                path={`/stories/${storyReferences.jessesSocks.storyUrl}`}
-                element={<Story storyReference={storyReferences.jessesSocks}/>}
+                path="/stories/:id"
+                element={checkIfStoryExists()}
             />
         </Routes>
     );
