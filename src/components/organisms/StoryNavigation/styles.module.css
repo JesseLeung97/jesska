@@ -28,6 +28,7 @@
     border-right: 2px solid;
     border-top: 2px solid;
     content: "";
+    transition: 0.3s all ease-out;
 }
 .navigation_item::visited {
     text-decoration: none;
@@ -35,16 +36,22 @@
 .navigation_item:hover {
     padding-right: 1em;
 }
-.navigation_item.active {
+.navigation_item > label:hover {
+    cursor: pointer;
+}
+.navigation_item.active_button {
     font-size: 28px;
     font-weight: bold;
     padding-right: 1em;
     pointer-events: none;
 }
-.navigation_item.active > p {
+.navigation_item.active_button >  {
     margin: 0;
 }
-.active::after {
+.active_button::after {
     width: 35px;
     top: 20px;
+}
+.inactive_text {
+    opacity: 0;
 }

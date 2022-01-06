@@ -6,13 +6,16 @@ import { StoryPanelNavigation } from "components/organisms/StoryPanelNavigation"
 import { TFirestoreStory, TStoryReference } from "types/databaseTypes";
 import { ContentWrapper } from "components/atoms/ContentWrapper";
 import { createStory } from "database/api";
+import { useLoading } from "globalState/LoadingContext";
 
 interface StoryProps {
-    firestoreStory: TFirestoreStory
+    firestoreStory: TFirestoreStory,
+    isBecomingVisibleComponent?: boolean
 }
 
 export const Story: React.FC<StoryProps> = ({
-    firestoreStory
+    firestoreStory,
+    isBecomingVisibleComponent
 }) => {
     const [currentPage, setCurrentPage] = useState<number>(0);
     const [story, setStory] = useState<TStory>({
@@ -20,8 +23,14 @@ export const Story: React.FC<StoryProps> = ({
         storyNameJapanese: "",
         scenes: []
     });
+    const subscribeToLoading = useLoading().subscribeToLoading;
 
     useEffect(() => {
+        subscribeToLoading(
+            "loading",
+            firestoreStory.storyID,
+            isBecomingVisibleComponent
+        );
         const initializeStory = async () => {
             await createStory(firestoreStory).then(storyResponse => {
                 setStory(storyResponse);
@@ -29,6 +38,19 @@ export const Story: React.FC<StoryProps> = ({
         }
         initializeStory();
     }, []);
+
+    let intScenesLoaded = 0;
+    const onStoryLoad = () => {
+        if(intScenesLoaded < story.scenes.length - 1) {
+            intScenesLoaded++;
+            return;
+        }
+        subscribeToLoading(
+            "loaded",
+            firestoreStory.storyID
+        );
+    }
+    
 
     const testOnClick = (iter: number) => {
         console.log("testing scene  ", iter);
@@ -42,6 +64,7 @@ export const Story: React.FC<StoryProps> = ({
                         scene={scene}
                         sceneIndex={index}
                         currentSceneIndex={currentPage}
+                        onStoryLoad={onStoryLoad}
                     />
                 )}
                 <StoryPanelNavigation

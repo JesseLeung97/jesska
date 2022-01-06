@@ -5,6 +5,7 @@ import { useTheme } from "theme/ThemeContext";
 
 
 interface TextProps {
+    className?: string,
     size?: TAtomSize,
     color?: TAtomTextColor,
     isAnimated?: boolean
@@ -12,6 +13,7 @@ interface TextProps {
 }
 
 export const Text: React.FC<TextProps> = ({ 
+    className,
     size,
     color,
     isAnimated,
@@ -25,7 +27,7 @@ export const Text: React.FC<TextProps> = ({
 
     return (
         <label 
-            className={`${classes[size ?? "medium"]} ${isAnimtedClass}`}
+            className={`${className} ${classes[size ?? "medium"]} ${isAnimtedClass}`}
             style={{color: GetAtomColor(theme.themeName, color ?? "primary")}}
         >
             { children }

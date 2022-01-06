@@ -4,6 +4,8 @@ import { RouteButton } from "components/atoms/RouteButton";
 import { useLanguage } from "localization/LocalizationContext";
 import { useStoryList } from "globalState/StoryListContext";
 import { useTheme } from "theme/ThemeContext";
+import { useLocation } from "react-router-dom";
+import { Text } from "components/atoms/Text";
 
 interface StoryNavigationProps {
 
@@ -11,9 +13,15 @@ interface StoryNavigationProps {
 
 export const StoryNavigation: React.FC<StoryNavigationProps> = ({}) => {
     const toggleTheme = useTheme().toggleTheme;
+    const toggleLanguage = useLanguage().toggleLanguage;
     const language = useLanguage().language;
     const theme = useTheme().theme;
     const storyList = useStoryList().storyList;
+    const currentStoryName = useLocation().pathname.substring(8);
+
+    const checkIsCurrentScene = (storyName: string): boolean => {
+        return currentStoryName === storyName;
+    }
 
     const createNavigationItems = (): React.ReactNode => {
         return (
@@ -21,14 +29,21 @@ export const StoryNavigation: React.FC<StoryNavigationProps> = ({}) => {
                 { Object.values(storyList).map((story, index) => {
                     return (
                         <RouteButton
-                            className={`${classes.navigation_item} ${classes.active}`}
+                            className={`${classes.navigation_item} ${checkIsCurrentScene(story.storyUrlExtension) ? classes.active_button : ""}`}
                             key={index}
-                            urlExtension={story.storyUrlExtension}
+                            urlExtension={`/stories${story.storyUrlExtension}`}
                         >
-                            <div>
-                                <p>{story.storyDate}</p>
-                                <p>{language.currentLanguage === "english" ? story.storyNameEnglish : story.storyNameJapanese}</p>
-                            </div>
+                            <Text 
+                                isAnimated={true}
+                            >
+                                {story.storyDate}
+                            </Text><br />
+                            <Text 
+                                className={`${checkIsCurrentScene(story.storyUrlExtension) ? "" : classes.inactive_text}`}
+                                isAnimated={true}
+                            >
+                                {language.currentLanguage === "english" ? story.storyNameEnglish : story.storyNameJapanese}
+                            </Text>
                         </RouteButton>
                     );
                 })}
@@ -50,6 +65,7 @@ export const StoryNavigation: React.FC<StoryNavigationProps> = ({}) => {
                 { createNavigationItems() }
             </div>
             <button onClick={toggleTheme} >Theme</button>
+            <button onClick={toggleLanguage} >{language.buttons.toggleLanguage}</button>
         </div>
     );
 }

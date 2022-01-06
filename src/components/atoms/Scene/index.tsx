@@ -3,15 +3,22 @@ import classes from "./style.module.css";
 import { Image } from "components/atoms/Image";
 
 interface SceneProps {
-    image: string
+    image: string,
+    onSceneLoad?: () => void
 }
 
 export const Scene: React.FC<SceneProps> = ({
-    image
+    image,
+    onSceneLoad
 }) => {
     return (
         <div className={classes.scene_container}>
-            <Image useParentSizing={true} className={classes.scene_image} image={image} size={"large"} />
+            <Image 
+                useParentSizing={true} 
+                className={classes.scene_image}
+                image={image} 
+                size={"large"}
+                onLoad={onSceneLoad} />
         </div>
     );
 }

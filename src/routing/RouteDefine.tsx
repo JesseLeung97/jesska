@@ -16,12 +16,12 @@ export const RouteDefine: React.FC = () => {
     const [routes, setRoutes] = useState<React.ReactNode>(<></>);
     const location = useLocation();
 
-    const checkIfStoryExists = (): React.ReactNode => {
+    const createStoryIfExists = (): React.ReactNode => {
         const storyIndex = storyList.findIndex((story) => location.pathname === `/stories${story.storyUrlExtension}`);
         if(storyIndex > -1) {
             const firestoreStory: TFirestoreStory = storyList[storyIndex];
             return (
-                <Story firestoreStory={firestoreStory}/>
+                <Story key={firestoreStory.storyUrlExtension} firestoreStory={firestoreStory}/>
             );
         } else {
             return (
@@ -42,7 +42,7 @@ export const RouteDefine: React.FC = () => {
             />
             <Route 
                 path="/stories/:id"
-                element={checkIfStoryExists()}
+                element={createStoryIfExists()}
             />
         </Routes>
     );

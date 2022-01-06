@@ -8,13 +8,15 @@ import { ContentWrapper } from "components/atoms/ContentWrapper";
 interface StoryPanelsProps {
     scene: TScene,
     sceneIndex: number,
-    currentSceneIndex: number
+    currentSceneIndex: number,
+    onStoryLoad?: () => void
 }
 
 export const StoryPanels: React.FC<StoryPanelsProps> = ({
     scene,
     sceneIndex,
-    currentSceneIndex
+    currentSceneIndex,
+    onStoryLoad
 }) => {
     const [isHiddenClass, setIsHiddenClass] = useState<string>(classes.is_hidden);
 
@@ -26,10 +28,12 @@ export const StoryPanels: React.FC<StoryPanelsProps> = ({
         <div className={`${classes.story_content} ${isHiddenClass}`}>
             <SceneTranslation
                 englishTranslation={scene.englishTranslation}
-                japaneseTranslation={scene.japaneseTranslation}
-            >
+                japaneseTranslation={scene.japaneseTranslation}>
             </SceneTranslation>
-            <Scene image={scene.storyboard}></Scene>
+            <Scene 
+                image={scene.storyboard}
+                onSceneLoad={onStoryLoad}>
+            </Scene>
         </div>
     );
 }
