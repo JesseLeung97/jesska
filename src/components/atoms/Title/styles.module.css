@@ -1,0 +1,15 @@
+.small {
+    font-size: clamp(24px, 2.5rem, 30px);
+}
+.medium {
+    font-size: clamp(30px, 3.5rem, 36px);
+}
+.large {
+    font-size: clamp(36px, 4.5vw, 42px);
+}
+.text_animation {
+    transition: 0.3s all ease-out;
+}
+.bold {
+    font-weight: 700;
+}

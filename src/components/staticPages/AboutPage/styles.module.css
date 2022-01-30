@@ -1,0 +1,6 @@
+.profile_cards_container {
+    display: flex;
+    flex-direction: column;
+    width: clamp(310px, 90%, 800px);
+    gap: 25px;
+}

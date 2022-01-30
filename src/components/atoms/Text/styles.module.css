@@ -1,11 +1,11 @@
 .small {
-    font-size: clamp(10px, 1rem, 18px);
+    font-size: clamp(12px, 1.5vw, 18px);
 }
 .medium {
-    font-size: clamp(16px, 1.5rem, 24px);
+    font-size: clamp(18px, 2.5vw, 24px);
 }
 .large {
-    font-size: clamp(22px, 2rem, 32px);
+    font-size: clamp(24px, 3.5vw, 30px);
 }
 .text_animation {
     transition: 0.3s all ease-out;

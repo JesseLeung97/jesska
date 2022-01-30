@@ -3,7 +3,6 @@
     margin: 0 auto;
 }
 .image_outer:after {
-    display: block;
     content: "";
     padding-bottom: 100%;
 }

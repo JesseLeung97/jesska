@@ -7,20 +7,26 @@ import { StoryNavigation } from "components/organisms/StoryNavigation";
 import { ContentWrapper } from "components/atoms/ContentWrapper";
 import { Loading } from "components/atoms/Loading";
 import { useLoading } from "globalState/LoadingContext";
+import { ScrollHandler } from "components/organisms/ScrollHandler";
+import { Header } from "components/organisms/Header";
+import NavigationProvider from "globalState/NavigationContext";
 
 const App: React.FC = () => {
 
-  const loadingStatus = useLoading().isLoading;
+  const { isLoading } = useLoading();
 
   return (
     <PageWrapper>
-      <ContentWrapper>
-        <RouteDefine />
-        <StoryNavigation />
-        { loadingStatus === "visualStoriesLoading" || loadingStatus === "visualStoriesLoaded" &&
+        { isLoading === "visualStoriesLoading" &&
           <Loading />
         }
-      </ContentWrapper>
+        <Header />
+        <NavigationProvider>
+          <ScrollHandler>
+            <RouteDefine />
+            <StoryNavigation />
+          </ScrollHandler>
+        </NavigationProvider> 
     </PageWrapper>
   );
 }

@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import classes from "components/organisms/StoryPanelNavigation/styles.module.css";
-
-import { StoryNavigationButton } from "components/atoms/StoryNavigationButton";
+//----- Types -----//
 import { TStory } from "types/storyTypes";
+//----- Context -----//
 import { useTheme } from "theme/ThemeContext";
+//----- Hooks and helpers -----//
+//----- Components -----//
+import { StoryNavigationButton } from "components/atoms/StoryNavigationButton";
 import { Text } from "components/atoms/Text";
+//----- Configuration -----//
 
 interface StoryPanelNavigationProps {
     story: TStory,
     navigationButtonClick: (input: any) => any,
     currentPage: number,
     setCurrentPage: (input: any) => any
-    
 }
 
 export const StoryPanelNavigation: React.FC<StoryPanelNavigationProps> = ({

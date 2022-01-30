@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from "react";
 import classes from "./styles.module.css";
-import { Scene } from "components/atoms/Scene";
-import { SceneTranslation } from "components/atoms/SceneTranslation";
+//----- Types -----//
 import { TScene } from "types/storyTypes";
+//----- Context -----//
+//----- Hooks and helpers -----//
+//----- Components -----//
+import { SceneTranslation } from "components/atoms/SceneTranslation";
+import { Scene } from "components/molecules/Scene";
 import { ContentWrapper } from "components/atoms/ContentWrapper";
+//----- Configuration -----//
 
 interface StoryPanelsProps {
     scene: TScene,
     sceneIndex: number,
-    currentSceneIndex: number,
-    onStoryLoad?: () => void
+    currentSceneIndex: number
 }
 
 export const StoryPanels: React.FC<StoryPanelsProps> = ({
     scene,
     sceneIndex,
-    currentSceneIndex,
-    onStoryLoad
+    currentSceneIndex
 }) => {
     const [isHiddenClass, setIsHiddenClass] = useState<string>(classes.is_hidden);
 
@@ -30,10 +33,7 @@ export const StoryPanels: React.FC<StoryPanelsProps> = ({
                 englishTranslation={scene.englishTranslation}
                 japaneseTranslation={scene.japaneseTranslation}>
             </SceneTranslation>
-            <Scene 
-                image={scene.storyboard}
-                onSceneLoad={onStoryLoad}>
-            </Scene>
+            <Scene image={scene.storyboard} />
         </div>
     );
 }

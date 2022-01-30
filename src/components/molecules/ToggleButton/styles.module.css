@@ -1,0 +1,30 @@
+.toggle_button_container {
+    height: 40px;
+    width: 40px;
+    opacity: 1;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.toggle_button {
+    border: none;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    background: inherit;
+    display: grid;
+    place-items: center;
+    transition: 0.3s background ease-out;
+}
+.toggle_button:hover {
+    cursor: pointer;
+}
+.icon {
+    height: 16px;
+    width: 16px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+.hidden {
+    display: none;
+    opacity: 0;
+}

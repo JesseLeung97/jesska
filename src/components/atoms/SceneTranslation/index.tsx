@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import classes from "./styles.module.css";
+//----- Types -----//
 import { TLanguages } from "types/localizationTypes";
+//----- Context -----//
 import { useLanguage } from "localization/LocalizationContext";
+//----- Hooks and helpers -----//
+//----- Components -----//
 import { Image } from "components/atoms/Image";
+//----- Configuration -----//
 
 interface SceneTranslationProps {
     englishTranslation: string,

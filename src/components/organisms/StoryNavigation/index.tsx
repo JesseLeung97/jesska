@@ -1,23 +1,41 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "components/organisms/StoryNavigation/styles.module.css";
-import { RouteButton } from "components/atoms/RouteButton";
-import { useLanguage } from "localization/LocalizationContext";
+//----- Types -----//
+//----- Context -----//
 import { useStoryList } from "globalState/StoryListContext";
 import { useTheme } from "theme/ThemeContext";
+import { useNavigation } from "globalState/NavigationContext";
+import { useLanguage } from "localization/LocalizationContext";
+//----- Hooks and helpers -----//
 import { useLocation } from "react-router-dom";
+//----- Components -----//
+import { RouteButton } from "components/atoms/RouteButton";
 import { Text } from "components/atoms/Text";
+//----- Configuration -----//
 
 interface StoryNavigationProps {
 
 }
 
 export const StoryNavigation: React.FC<StoryNavigationProps> = ({}) => {
-    const toggleTheme = useTheme().toggleTheme;
-    const toggleLanguage = useLanguage().toggleLanguage;
-    const language = useLanguage().language;
-    const theme = useTheme().theme;
-    const storyList = useStoryList().storyList;
-    const currentStoryName = useLocation().pathname.substring(8);
+    
+    const { theme, toggleTheme }  = useTheme();
+    const { language, toggleLanguage } = useLanguage();
+    const { storyList } = useStoryList();
+    const { pathname } = useLocation();
+    const { currentPage } = useNavigation();
+    const currentStoryName = pathname.substring(8);
+    const isError = pathname === "/error";
+    const [currentPageLocal, setCurrentPageLocal] = useState<number>();
+    const [stateRouteItems, setRouteItems] = useState<React.ReactNode>(<></>);
+
+    useEffect(() => {
+        setRouteItems(routeItems);
+    }, [storyList]);
+
+    useEffect(() => {
+        setCurrentPageLocal(currentPage);
+    }, [currentPage])
 
     const checkIsCurrentScene = (storyName: string): boolean => {
         return currentStoryName === storyName;
@@ -30,42 +48,35 @@ export const StoryNavigation: React.FC<StoryNavigationProps> = ({}) => {
                     return (
                         <RouteButton
                             className={`${classes.navigation_item} ${checkIsCurrentScene(story.storyUrlExtension) ? classes.active_button : ""}`}
-                            key={index}
-                            urlExtension={`/stories${story.storyUrlExtension}`}
-                        >
-                            <Text 
-                                isAnimated={true}
-                            >
-                                {story.storyDate}
-                            </Text><br />
-                            <Text 
-                                className={`${checkIsCurrentScene(story.storyUrlExtension) ? "" : classes.inactive_text}`}
-                                isAnimated={true}
-                            >
-                                {language.currentLanguage === "english" ? story.storyNameEnglish : story.storyNameJapanese}
-                            </Text>
+                            key={`routeButton_${story.storyID}`}
+                            routeName={story.storyNameEnglish}
+                            urlExtension={`/stories${story.storyUrlExtension}`}>
+                            {story.storyDate}
                         </RouteButton>
                     );
-                })}
+                })} 
             </>
         );
     }
 
+    let routeItems = (
+        <>
+            <RouteButton
+                className={classes.navigation_item}
+                routeName={"about"}
+                urlExtension={"/about"}>
+            </RouteButton>
+            { createNavigationItems() }
+        </>
+    );
+
     return (
-        <div className={classes.story_navigation_container}>
-            <div className={classes.story_navigation_container_inner}>
-                <RouteButton
-                    className={classes.navigation_item}
-                    urlExtension={"/about"}
-                >
-                    <div>
-                        <p>{language.aboutPage.navigationButton}</p>
-                    </div>
-                </RouteButton>
-                { createNavigationItems() }
+        <>
+        <div className={`${classes.story_navigation_container} ${isError ? classes.error_hide : ""}`}>
+            <div id={"story_navigation_scroll_handler"} className={classes.story_navigation_container_inner}>
+                { stateRouteItems }
             </div>
-            <button onClick={toggleTheme} >Theme</button>
-            <button onClick={toggleLanguage} >{language.buttons.toggleLanguage}</button>
         </div>
+        </>
     );
 }

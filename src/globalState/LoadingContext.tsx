@@ -1,14 +1,21 @@
-import React, { useContext, useState } from "react";
-import { TComponentLoading, TApplicationLoading, TLoading, TLoadedComponent } from "types/loadingTypes";
+import React from "react";
+//----- Types -----//
+import { TComponentLoading, TApplicationLoading, TLoading, TLoadedComponent, TLoadingLocation } from "types/loadingTypes";
+//----- Context -----//
+import { useContext, createContext } from "react";
+//----- Hooks and helpers -----//
+import { useEffect, useState } from "react";
+//----- Components -----//
+//----- Configuration -----//
 
 type TLoadingContext = { 
     isLoading: TApplicationLoading,
     currentComponentId: string,
-    subscribeToLoading: (loadingType: TComponentLoading, componentId: string, shouldUpdateCurrentComponent?: boolean) => any 
+    loadedComponents: TLoadedComponent[],
+    subscribeToLoading: (loadingType: TComponentLoading, componentId: string, relativeLocation?: TLoadingLocation, shouldUpdateCurrentComponent?: boolean) => any 
 };
 
-
-export const LoadingContext = React.createContext<TLoadingContext>(
+export const LoadingContext = createContext<TLoadingContext>(
     {} as TLoadingContext
 );
 
@@ -20,23 +27,30 @@ export const LoadingProvider: React.FC = ({ children }) => {
     const [loadingStatus, setLoadingStatus] = useState<TApplicationLoading>("visualStoriesLoading");
     const [currentComponentId, setCurrentComponentId] = useState<string>("");
     const [loadedComponents, setLoadedComponents] = useState<TLoadedComponent[]>([]);
-
-
-    const subscribeToLoading = (loadingType: TComponentLoading, componentId: string, shouldUpdateCurrentComponent?: boolean) => {
+    
+    const subscribeToLoading = (loadingType: TComponentLoading, componentId: string, relativeLocation?: TLoadingLocation, shouldUpdateCurrentComponent?: boolean) => {
         let visibleComponentId = currentComponentId;
         if(shouldUpdateCurrentComponent) {
             visibleComponentId = componentId;
             setCurrentComponentId(componentId);
         }
         if(loadingType === "unloaded") {
-            loadedComponents.filter(component => component.componentId !== componentId);
+            const removeIndexLoadedComponents = loadedComponents.filter(component => component.componentId !== componentId);
+            setLoadedComponents(removeIndexLoadedComponents);
             return;
         }
         if(loadedComponents.findIndex(component => component.componentId === componentId) === -1) {
-            loadedComponents.push({
-                componentId: componentId,
-                status: loadingType
-            });
+            if(relativeLocation === "before") {
+                loadedComponents.unshift({
+                    componentId: componentId,
+                    status: loadingType
+                });
+            } else {
+                loadedComponents.push({
+                    componentId: componentId,
+                    status: loadingType
+                });
+            }          
         } else {
             const foundIndex = loadedComponents.findIndex(component => component.componentId === componentId);
             loadedComponents[foundIndex].status = loadingType;
@@ -56,7 +70,7 @@ export const LoadingProvider: React.FC = ({ children }) => {
     }
 
     return (
-        <LoadingContext.Provider value={{isLoading: loadingStatus, currentComponentId: currentComponentId, subscribeToLoading: subscribeToLoading}}>
+        <LoadingContext.Provider value={{isLoading: loadingStatus, currentComponentId: currentComponentId, loadedComponents: loadedComponents, subscribeToLoading: subscribeToLoading}}>
             { children }
         </LoadingContext.Provider>
     );

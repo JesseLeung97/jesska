@@ -9,5 +9,9 @@ export type TColors = {
     primaryTextColor: string,
     secondaryTextColor: string,
     backgroundColor: string,
-    foregroundColor: string
+    foregroundColor: string,
+    backgroundGradient: string,
+    toggleTheme: string,
+    toggleThemeHover: string,
+    headerBackground: string
 }

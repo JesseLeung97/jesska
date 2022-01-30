@@ -1,9 +1,15 @@
+//----- Types -----//
 import { TScene, TStory } from "types/storyTypes";
 import { TFirestoreScene, TFirestoreStory, TSceneGroupReference, TSceneReference, TStoryReference } from "types/databaseTypes";
+//----- Context -----//
+//----- Hooks and helpers -----//
 import { getDownloadURL } from "firebase/storage";
 import { getDocs, collection, where, query, QuerySnapshot, DocumentData } from "firebase/firestore";
-import { firebaseFirestore } from "database/firebase";
 import { CreateSceneJapaneseReference, CreateSceneImageReference, CreateSceneEnglishReference } from "database/storyReferences";
+import { navigateToError } from "hooks/hooks";
+//----- Components -----//
+//----- Configuration -----//
+import { firebaseFirestore } from "database/firebase";
 
 const createSceneGroup = async (sceneGroup: TSceneGroupReference): Promise<Array<TScene>> => {
     let scenes = Array<TScene>();
@@ -26,7 +32,6 @@ const createSceneGroup = async (sceneGroup: TSceneGroupReference): Promise<Array
 export const getStoryList = async (includeInactive: boolean = false): Promise<TFirestoreStory[]> => {
     let storyList = Array<TFirestoreStory>();
     const storyCollectionReference = collection(firebaseFirestore, "stories");
-
     let storyListQuery = query(storyCollectionReference, where("isActive", "==", true));
     if (includeInactive) {
         storyListQuery = query(storyCollectionReference);
@@ -43,7 +48,7 @@ export const getStoryList = async (includeInactive: boolean = false): Promise<TF
             storyList.push(story as TFirestoreStory);
         });
     }).catch((error) => {
-        console.log(error);
+        navigateToError();
     });
     return storyList;
 } 
@@ -63,6 +68,7 @@ export const createStory = async (firestoreStory: TFirestoreStory): Promise<TSto
 
 export const convertToSceneGroup = async (firestoreStory: TFirestoreStory): Promise<TSceneGroupReference> => {
     let scenes: TSceneGroupReference = {};
+
     await getDocs(firestoreStory.scenes).then(async (sceneList) => {
         sceneList.docs.forEach((scene) => {
             const sceneData = scene.data() as TFirestoreScene;
@@ -81,7 +87,7 @@ export const convertToSceneGroup = async (firestoreStory: TFirestoreStory): Prom
 
         });
     }).catch((error) => {
-        console.log(error);
+        navigateToError();
     });
 
     return scenes;

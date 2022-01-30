@@ -1,10 +1,17 @@
-import React, { useContext, useState } from 'react';
-import { themes } from "theme/themes";
+import React from 'react';
+//----- Types -----//
 import { TColorTheme } from "types/themeTypes";
+//----- Context -----//
+import { useContext, createContext } from "react";
+//----- Hooks and helpers -----//
+import { useState } from "react";
+//----- Components -----//
+//----- Configuration -----//
+import { themes } from "theme/themes";
 
 type TThemeContext = { theme: TColorTheme; toggleTheme: () => void };
 
-export const ThemeContext = React.createContext<TThemeContext>(
+export const ThemeContext = createContext<TThemeContext>(
     {} as TThemeContext
 );
 

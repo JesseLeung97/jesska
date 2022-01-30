@@ -1,0 +1,9 @@
+.story_list_container {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    flex-grow: 1;
+}
+.story_list_container::-webkit-scrollbar {
+    display: none;
+}

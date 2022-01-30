@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, createContext } from "react";
 import { translations } from "localization/translations";
 import { TTranslation } from "types/localizationTypes";
 
 type TLanguageContext = { language: TTranslation; toggleLanguage: () => void };
 
-export const LanguageContext = React.createContext<TLanguageContext>(
+export const LanguageContext = createContext<TLanguageContext>(
     {} as TLanguageContext
 );
 

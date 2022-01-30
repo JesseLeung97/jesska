@@ -1,6 +1,11 @@
 import React from "react";
 import classes from "components/atoms/Image/styles.module.css";
+//----- Types -----//
 import { TAtomSize } from "types/atomTypes";
+//----- Context -----//
+//----- Hooks and helpers -----//
+//----- Components -----//
+//----- Configuration -----//
 
 interface ImageProps {
     className?: string,
@@ -22,9 +27,7 @@ export const Image: React.FC<ImageProps> = ({
             <img
                 className={classes.image_inner} 
                 src={image}
-                onLoad={onLoad}
-                >
-            </img>
+                onLoad={onLoad} />
         </div>
     );
 }

@@ -1,12 +1,13 @@
 import React from "react";
 import classes from "./style.module.css";
+//----- Types -----//
+//----- Context -----//
+//----- Hooks and helpers -----//
+//----- Components -----//
+//----- Configuration -----//
 import danceExtra from "assets/bumbumdance.png";
 
-interface LoadingProps {
-
-}
-
-export const Loading: React.FC<LoadingProps> = () => {
+export const Loading: React.FC = () => {
     return (
         <div className={classes.overlay_container}>
             <div className={classes.animation_container}>

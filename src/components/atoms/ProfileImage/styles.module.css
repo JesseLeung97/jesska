@@ -1,3 +1,13 @@
+.image_outer {
+    position: relative;
+    margin: 0 auto;
+    width: clamp(100px, 70%, 200px);
+}
+.image_out:after {
+    display: block;
+    content: "";
+    padding-bottom: 100%;
+}
 .image_inner {
     height: 100%;
     width: 100%;

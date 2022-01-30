@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./styles.module.css";
-import navigationButtonIcon from "assets/navigationCircle.svg";
+import navigationButtonIcon from "assets/buttonIcons/navigationCircle.svg";
 
 interface StoryNavigationButtonProps {
     buttonValue: number,
@@ -15,8 +15,7 @@ export const StoryNavigationButton: React.FC<StoryNavigationButtonProps> = ({
         <button
             className={classes.button_no_styles}
             value={buttonValue}
-            onClick={() => buttonOnClick(buttonValue)}
-        >
+            onClick={() => buttonOnClick(buttonValue)}>
             <img src={navigationButtonIcon}></img>
         </button>
     );
