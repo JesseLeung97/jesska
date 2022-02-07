@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import classes from "components/organisms/ScrollHandler/styles.module.css";
 //----- Types -----//
 import { TFirestoreStory } from "types/databaseTypes";
@@ -8,6 +8,7 @@ import { useNavigation } from "globalState/NavigationContext";
 //----- Hooks and helpers -----//
 import { useLocation } from "react-router-dom";
 import { useReferredState, useInitialize } from "hooks/hooks";
+import { useEffect, useState } from "react";
 //----- Components -----//
 //----- Configuration -----//
 

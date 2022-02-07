@@ -16,4 +16,3 @@ export type TTranslation = {
         buttonLabel: string
     }
 }
-

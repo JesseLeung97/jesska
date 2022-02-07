@@ -1,46 +1,303 @@
-# Getting Started with Create React App
+# Jesska
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+A showcase website for the Jesska series of slice of life comics.
 
-In the project directory, you can run:
+[The Site](jesska.io)
 
-### `yarn start`
+[Instagram](https://www.instagram.com/jesska.io/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Running this Application
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
 
-### `yarn test`
+Within the project directory:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```yarn start```
 
-### `yarn build`
+Runs and lauches the application for development on localhost.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+`yarn build`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Builds the application for production
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Releases
 
-### `yarn eject`
+----
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+`1.0.0` Current
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Future Roadmap, Desired Improvements, and Bugs
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+----
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Use local define file for routing and do not depend on api results
 
-## Learn More
+- Admin panel
+  
+  - Upload and change visibility of stories without updating the codebase or database directly
+  
+  - Detailed error logging
+  
+  - Instagram and Twitter bot to automatically post an update when a new story is published through the admin panel
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Email form for inquiries and to report errors
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Add CDN for images to decrease loading time
+
+- Add a NodeJS backend so the site can be hosted on a cloud instance instead of Netlifly
+  
+  - Allow for editing of local files on site server such that routes can be delcaratively defined and maintained  
+
+- Move project to NextJS for server side rendering and more declarative route defines
+
+- Move animations to a separate library
+
+## Technical Design Overview
+
+----
+
+Jesska is currently built with a React front-end written in TypeScript, a Firebase Firestore database, and Firebase Storage for storing images.  The structure of Jesska's visual components is inspired by atomic design, organizing components into groups of relative complexity.  Outside of the visual components structure, Jesska is largely organized by groupings of related functionalty.  Application state is divided and maintained by several contexts such as theme, language, and loading state.  Each provides a named wrapper for  `useContext` that exposes the state to children which depend on it and if necessary, provides a means of updating the state.
+
+## Application Flow Overview
+
+-----
+
+#### On Page Load
+
+- Set the application's loading context to the `visualStoriesLoading` loading state
+
+- Query database for currently active stories
+
+- Create the routes in the`StoryNavigation` component based on the returned story list
+
+- Create `Story` components for each story in the story list
+  
+  - If the story is currently visible or in the vacinity of the visible story, notify the loading context.  Set component's loading state to `loading`
+    
+    - Query the database to get references to images stored in the storage bucket
+    
+    - Load images from the setorage bucket
+
+- `ScrollHandler` detects a change in the history and snaps to the active story
+
+- When the visible story is loaded, set the components loading state to `loaded` and notify the loading context
+
+- Set application's loading context to the `visualStoriesLoaded` state
+
+- When all background stories are loaded, update the application's loading state to `fullyLoaded`
+
+#### On Scroll
+
+- Update `placeholder`, `background`, and `visible` stories
+  
+  - Unload `placeholder` stories (far from currently visible story)
+  
+  - Background load `background` stories (close to visible story)
+  
+  - Update the visibility of the current story
+
+- `ScrollHandler` detects a full page scroll and updates the navigation bar url to match the currently visible story
+
+- `ScrollHandler` detects a full page scroll and updates the `NavigationContext` with the current story index
+
+- Navigation items on the right are adjusted to maintain the correct relative position to the active story
+
+#### On Error
+
+- Navigate to `ErrorPage` and include error type in state if necessary
+
+- Display an error page
+  
+  - `404` Display missing story page with link to the home page
+  
+  - `Database Error` If an error occurs during the api call, an error page will be display but a link home will not be included
+
+## Project Structure
+
+----
+
+#### Parent Folder Structure
+
+```
+./src
+|–– App.tsx
+|–– assets
+    |–– buttonIcons
+    |–– errors
+|–– components
+    |–– atoms
+        |–– ComponentName
+    |–– molecules
+        |–– ErrorImages
+            |–– ComponentName
+        |–– ComponentName
+    |–– organisms
+        |–– ComponentName
+    |–– staticPages
+        |–– PageName
+|–– database
+|–– globalState
+|–– hooksAndHelpers
+|–– index.css
+|–– index.tsx
+|–– localization
+    |–– translations
+|–– react-app-env.d.ts
+|–– routing
+    |–– RouteDefine
+|–– theme
+    |–– themes
+|–– types
+```
+
+#### Visual Component Folder Structure
+
+```
+ComponentName
+|–– index.tsx
+|–– styles.module.css
+```
+
+Code for a component's local state, functionality, and html structure are located in `index.tsx` and class names and local styles are imported from the css module `styles.module.css`
+
+#### Theme and Language Components Folder Structure
+
+```
+[localization / theme]
+|–– [Localization / Theme]Context.tsx
+|–– [translations / themes]
+    |–– [language 1 / theme 1]
+    |–– [language 2 / theme 2]
+|–– [translations / themes].ts
+```
+
+A context provider component, named `useContext` wrapper, and a function for toggling the language / theme are created in the `Context.tsx` file.  Translations are defined in JSON objects inside the `translations` folder while themes are stored in JSON like objects in `themes`.  The `translations.ts` file and `themes.ts` file create an object containing all translations and themes.
+
+## Story Structure
+
+-----
+
+```
+|–– Story
+    |–– Scenes
+        |–– Scene Image
+        |–– English Translation
+        |–– Japanese Translation
+    |–– ...
+```
+
+An identical Jesska story structure is used in the storage bucket, database, and component structure of the front end.  Stories may have any number of scenes (at the moment all have 4), each of which must include a base scene image (art), an english translation, and a japanese translation.  Like the translations on the rest of the site, the story translation state is controlled by the Localization Context Provider.
+
+## Notable Types
+
+-----
+
+The types used in Jesska are prepended with `T` for easy understanding.
+
+#### TStory
+
+```typescript
+type TStory = {
+    storyNameEnglish: string,
+    storyNameJapanese: string,
+    scenes: [
+        scene_x: {
+            storyboard: string,
+            englishTranslation: string,
+            japaneseTranslation: string
+        },
+        ...
+    ]
+}
+```
+
+The structure of story data created through combining calls to the database and storage bucket.
+
+#### TColorTheme and TColors
+
+```typescript
+type TColorTheme = {
+    themeName: "light" | "dark",
+    colors: TColors
+}
+
+type TColors = {
+    [colorName: string]: string
+}
+```
+
+In the application, the key names of `TColors` are defined such that all themes must implement the same colors avoiding errors caused by incomplete or unmatching theme objects.
+
+#### TTranslation
+
+```typescript
+type TTranslation = {
+    currentLanguage: "english" | "japanese",
+    [translationGroupName: string]: {
+        [individualTranslation: string]: string
+    },
+    ...    
+}
+```
+
+Translations include a reference to their language and are structured into translation groups.  Each groups represents translations of similar nature, ex. translations for the about page.  Within each translation group, and individual translation is given a name and associated translation.
+
+## Notable Hooks and Helpers
+
+-----
+
+`useReferredState`
+
+Use `useRef` in the style of `useState`.  This is used in the `ScrollHandler` so that the `EventListener` assigned to the scroll object can use the current state.
+
+
+
+`useInitialize`
+
+A wrapper for `useEffect` with an empty dependency array.  Used primarily for organization and visual differentiation between initialization focused `useEffect`s and continuosly listening `useEffect`s.
+
+
+
+`use[ContextName]` 
+
+A wrapper for `useContext` to more easily distinguish which context is being used.
+
+
+
+`BrowserRouter` 
+
+A custom router which mocks the `BrowserRouter` component supplied by `react-router-dom`.  This router expands on the `react-router-dom` router by taking a `BrowserHistory` object for history allowing for the history to be updated outside of react components
+
+## Code Style Overview
+
+----
+
+#### Types
+
+`T[TypeName]`    
+
+Types are prepended by `T` and the first letter of each word is capitalized.
+
+#### Component Props
+
+`[ComponentName]Props`    
+
+Component prop interfaces use the exact name of the component with `Props` appended.
+
+#### Context Hooks
+
+`use[ContextName]`    
+
+Named context hooks (wrappers for `useContext`) are prepended by `use` and use the same name as the context they return.
+
+#### Functions and Variables
+
+`functionName`
+
+`variableName`
+
+`variableName_1, variableName_2`
+
+Functions and variables are named in camel case and are unabbreviated.  Variables intended to be general and closely related are appended with a number. 

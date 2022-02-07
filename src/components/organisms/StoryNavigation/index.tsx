@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import classes from "components/organisms/StoryNavigation/styles.module.css";
 //----- Types -----//
 //----- Context -----//
@@ -8,6 +8,7 @@ import { useNavigation } from "globalState/NavigationContext";
 import { useLanguage } from "localization/LocalizationContext";
 //----- Hooks and helpers -----//
 import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 //----- Components -----//
 import { RouteButton } from "components/atoms/RouteButton";
 import { Text } from "components/atoms/Text";

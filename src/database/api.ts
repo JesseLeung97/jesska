@@ -50,7 +50,6 @@ export const getStoryList = async (includeInactive: boolean = false): Promise<TF
         });
     }).catch((error) => {
         throw new Error(error);
-        //navigateToError();
     });
     return storyList;
 } 
@@ -90,7 +89,6 @@ export const convertToSceneGroup = async (firestoreStory: TFirestoreStory): Prom
         });
     }).catch((error) => {
         throw new Error(error);
-        //navigateToError();
     });
 
     return scenes;
