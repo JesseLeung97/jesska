@@ -176,7 +176,7 @@ An identical Jesska story structure is used in the storage bucket, database, and
 
 ## Notable Types
 
------
+
 
 The types used in Jesska are prepended with `T` for easy understanding.
 
@@ -234,27 +234,19 @@ Translations include a reference to their language and are structured into trans
 
 Use `useRef` in the style of `useState`.  This is used in the `ScrollHandler` so that the `EventListener` assigned to the scroll object can use the current state.
 
-
-
 `useInitialize`
 
 A wrapper for `useEffect` with an empty dependency array.  Used primarily for organization and visual differentiation between initialization focused `useEffect`s and continuosly listening `useEffect`s.
 
-
-
 `use[ContextName]` 
 
 A wrapper for `useContext` to more easily distinguish which context is being used.
-
-
 
 `BrowserRouter` 
 
 A custom router which mocks the `BrowserRouter` component supplied by `react-router-dom`.  This router expands on the `react-router-dom` router by taking a `BrowserHistory` object for history allowing for the history to be updated outside of react components
 
 ## Code Style Overview
-
-
 
 #### Types
 
