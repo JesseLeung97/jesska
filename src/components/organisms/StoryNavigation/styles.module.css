@@ -39,21 +39,8 @@
 .navigation_item::visited {
     text-decoration: none;
 }
-.navigation_item:hover {
-    padding-right: 1em;
-}
 .navigation_item > label:hover {
     cursor: pointer;
-}
-.navigation_item.active_button {
-    font-size: 28px;
-    font-weight: bold;
-    padding-right: 1em;
-    pointer-events: none;
-}
-.active_button::after {
-    width: 35px;
-    top: 20px;
 }
 .inactive_text {
     opacity: 0;

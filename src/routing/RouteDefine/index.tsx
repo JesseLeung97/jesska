@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import classes from "routing/RouteDefine/styles.module.css";
 //----- Types -----//
 import { TComponentLoadProcedure } from "types/loadingTypes";
@@ -8,11 +8,13 @@ import { TErrorType } from "components/staticPages/ErrorPage";
 import { useStoryList } from "globalState/StoryListContext";
 //----- Hooks and helpers -----//
 import { useLocation, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 //----- Components -----//
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Story } from "components/organisms/Story";
 import { ErrorPage } from "components/staticPages/ErrorPage";
 import { AboutPage } from "components/staticPages/AboutPage";
+import { navigateToError } from "hooks/hooks";
 //----- Configuration -----/\
 
 export const RouteDefine: React.FC = () => {
@@ -22,6 +24,13 @@ export const RouteDefine: React.FC = () => {
     const navigate = useNavigate();
     const [routes, setRoutes] = useState<React.ReactNode>(<></>);
     const [isError, setIsError] = useState<boolean>(false);
+
+    useEffect(() => {
+        if(pathname === "/error") {
+            //navigateToError("pageNotFound");
+            //navigate("/error");
+        }
+    }, [pathname]);
 
     const getLoadingProcedure = (storyIndex: number, index: number): TComponentLoadProcedure => {
         switch(Math.abs(index - storyIndex)) {

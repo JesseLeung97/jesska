@@ -1,9 +1,11 @@
-import React from "react";
 //----- Types -----//
+import { TErrorType } from "components/staticPages/ErrorPage";
 import { MutableRefObject, Dispatch } from "react";
 //----- Context -----//
+import { customHistory } from "routing/history";
 //----- Hooks and helpers -----//
 import { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 //----- Components -----//
 //----- Configuration -----//
 
@@ -22,7 +24,6 @@ export const useReferredState = <T>(initialValue: T): [MutableRefObject<T>, Disp
 
  export const useInitialize = (initializeFunction: () => any) => useEffect(initializeFunction, []);
 
- export const navigateToError = (): void => {
-    const baseUrl = window.location.origin;
-    window.location.href = `${baseUrl}/error`;
+ export const navigateToError = (errorType?: TErrorType): void => {
+    customHistory.push("/error", { errorType: errorType as TErrorType});
  }

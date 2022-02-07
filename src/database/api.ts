@@ -2,6 +2,7 @@
 import { TScene, TStory } from "types/storyTypes";
 import { TFirestoreScene, TFirestoreStory, TSceneGroupReference, TSceneReference, TStoryReference } from "types/databaseTypes";
 //----- Context -----//
+import { useAppStatus } from "globalState/AppStatus";
 //----- Hooks and helpers -----//
 import { getDownloadURL } from "firebase/storage";
 import { getDocs, collection, where, query, QuerySnapshot, DocumentData } from "firebase/firestore";
@@ -48,7 +49,8 @@ export const getStoryList = async (includeInactive: boolean = false): Promise<TF
             storyList.push(story as TFirestoreStory);
         });
     }).catch((error) => {
-        navigateToError();
+        throw new Error(error);
+        //navigateToError();
     });
     return storyList;
 } 
@@ -87,7 +89,8 @@ export const convertToSceneGroup = async (firestoreStory: TFirestoreStory): Prom
 
         });
     }).catch((error) => {
-        navigateToError();
+        throw new Error(error);
+        //navigateToError();
     });
 
     return scenes;

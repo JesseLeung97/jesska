@@ -3,6 +3,7 @@ import React from "react";
 import { TFirestoreStory } from "types/databaseTypes";
 //----- Context -----//
 import { useContext, createContext } from "react";
+import { useAppStatus } from "globalState/AppStatus";
 //----- Hooks and helpers -----//
 import { useState, useEffect } from "react";
 import { getStoryList } from "database/api";
@@ -20,19 +21,23 @@ export const useStoryList = (): TStoryListContext => {
     return useContext(StoryListContext);
 }
 
-const StoryListProvider: React.FC = ({ children }) => {
+export const StoryListProvider: React.FC = ({ children }) => {
     const [storyList, setStoryList] = useState<TFirestoreStory[]>([]);
     const [isError, setIsError] = useState<boolean>(false);
+    const { databaseStatus, updateDatabaseStatus } = useAppStatus();
     
     useEffect(() => {
         const initializeStoryList = async () => {
             await getStoryList().then((storyListResponse) => {
                 setStoryList(storyListResponse);
-            }).catch(() => {
-                navigateToError();
+            }).catch((error) => {
+                updateDatabaseStatus("down");
+                navigateToError("maintenance");
             });
         }
-        initializeStoryList();
+        if(databaseStatus === "healthy") {
+            initializeStoryList();
+        }
     }, []);
 
     return (
@@ -41,5 +46,3 @@ const StoryListProvider: React.FC = ({ children }) => {
         </StoryListContext.Provider>
     );
 }
-
-export default StoryListProvider;

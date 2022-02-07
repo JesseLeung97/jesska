@@ -1,0 +1,21 @@
+.error_text_container {
+    margin: 10px 10px 50px;
+}
+
+.home_button_link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+.home_button_container {
+    width: fit-content;
+    padding: 10px 15px;
+    margin: 10px auto;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: 0.3s background ease-out;
+}
+.home_button {
+    cursor: pointer;
+    color: inherit;
+}

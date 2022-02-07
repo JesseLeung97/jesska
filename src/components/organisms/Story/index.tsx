@@ -6,9 +6,10 @@ import { TStory } from "types/storyTypes"
 import { TComponentLoadProcedure, TLoadingLocation } from "types/loadingTypes";
 //----- Context -----//
 import { StoryLoadingProvider } from "globalState/StoryLoadingContext";
+import { useNavigation } from "globalState/NavigationContext";
+import { useStoryList } from "globalState/StoryListContext";
 //----- Hooks and helpers -----//
 import { useLoading } from "globalState/LoadingContext";
-import { useNavigate } from "react-router-dom";
 import { createStory } from "database/api";
 import { useInitialize, navigateToError } from "hooks/hooks";
 //----- Components -----//
@@ -27,7 +28,7 @@ export const Story: React.FC<StoryProps> = ({
     loadingType,
     relativeLocation
 }) => {
-    const [currentPage, setCurrentPage] = useState<number>(0);
+    const [currentPageLocal, setCurrentPageLocal] = useState<number>(0);
     const [loadingClass, setLoadingClass] = useState<string>("");
     const [story, setStory] = useState<TStory>({
         storyNameEnglish: "",
@@ -35,24 +36,12 @@ export const Story: React.FC<StoryProps> = ({
         scenes: []
     });
     const { subscribeToLoading } = useLoading();
-    const navigate = useNavigate();
+    const { currentPage } = useNavigation();
+    const { storyList } = useStoryList();
 
     useInitialize(() => {
         if(loadingType === "placeholder") {
             return;
-        }
-        subscribeToLoading(
-            "loading",
-            firestoreStory.storyUrlExtension,
-            relativeLocation,
-            (loadingType === "visible"),
-        );
-        const initializeStory = async () => {
-            await createStory(firestoreStory).then(storyResponse => {
-                setStory(storyResponse);
-            }).catch((error) => {
-                navigateToError();
-            });
         }
         initializeStory();
         return () => {
@@ -71,6 +60,35 @@ export const Story: React.FC<StoryProps> = ({
         );
     }
 
+    const initializeStory = () => {
+        subscribeToLoading(
+            "loading",
+            firestoreStory.storyUrlExtension,
+            relativeLocation,
+            (loadingType === "visible"),
+        );
+        const fetchStory = async () => {
+            await createStory(firestoreStory).then(storyResponse => {
+                setStory(storyResponse);
+            }).catch((error) => {
+                navigateToError("maintenance");
+            });
+        }
+        fetchStory();
+        
+    }
+
+    useEffect(() => {
+        console.log(currentPage, "current page");
+        const currentPageIndex = storyList.findIndex((story) => (firestoreStory.storyUrlExtension === story.storyUrlExtension));
+        if(currentPageIndex > -1) {
+            if(Math.abs(currentPageIndex - currentPageIndex) < 2) {
+                console.log("preparing to load", firestoreStory.storyUrlExtension);
+                initializeStory();
+            }
+        }
+    }, [currentPage])
+
     const testOnClick = (iter: number) => {
         console.log("testing scene  ", iter);
     }
@@ -84,13 +102,13 @@ export const Story: React.FC<StoryProps> = ({
                             key={`sceneIndex_${story.scenes.indexOf(scene)}`} 
                             scene={scene}
                             sceneIndex={index}
-                            currentSceneIndex={currentPage}/>
+                            currentSceneIndex={currentPageLocal}/>
                     )}
                     <StoryPanelNavigation
                         story={story}
                         navigationButtonClick={testOnClick}
-                        currentPage={currentPage}
-                        setCurrentPage={setCurrentPage}/>
+                        currentPage={currentPageLocal}
+                        setCurrentPage={setCurrentPageLocal}/>
                 </div>
             </StoryLoadingProvider>
         </ContentWrapper>

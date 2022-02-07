@@ -2,7 +2,7 @@ import { TColors, TColorTheme } from "types/themeTypes";
 
 const darkColors: TColors = {
     primaryTextColor: "rgb(240, 231, 219)",
-    secondaryTextColor: "",
+    secondaryTextColor: "rgb(32, 32, 35)",
     backgroundColor: "rgb(32, 32, 35)",
     foregroundColor: "",
     backgroundGradient: "linear-gradient(to left, rgb(240, 231, 219) 50%, rgb(32, 32, 35) 50%) left / 200%",

@@ -19,7 +19,7 @@ export const useTheme = (): TThemeContext => {
     return useContext(ThemeContext);
 }
 
-const ThemeProvider: React.FC = ({ children }) => {
+export const ThemeProvider: React.FC = ({ children }) => {
     
     const [colorTheme, setColorTheme] = useState<TColorTheme>(themes.darkTheme);
     const switchTheme = () => {
@@ -31,5 +31,3 @@ const ThemeProvider: React.FC = ({ children }) => {
         </ThemeContext.Provider>
     );
 }
-
-export default ThemeProvider;

@@ -1,4 +1,11 @@
-import React, { useContext, useState } from "react";
+import React from "react";
+//----- Types -----//
+//----- Context -----//
+import { useContext } from "react";
+//----- Hooks and helpers -----//
+import { useState } from "react";
+//----- Components -----//
+//----- Configuration -----//
 
 type TStoryLoadingContext = {
     onLoadingComplete: () => void
@@ -37,5 +44,5 @@ export const StoryLoadingProvider: React.FC<StoryLoadingProviderProps> = ({
         <StoryLoadingContext.Provider value={{onLoadingComplete}}>
             { children }
         </StoryLoadingContext.Provider>
-    )
+    );
 }

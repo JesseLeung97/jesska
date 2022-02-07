@@ -1,0 +1,18 @@
+.story_panels_container {
+    max-height: 500px;
+    width: clamp(300px, 90%, 500px);
+    transition: 0.1s opacity ease-out;
+    margin: 0 auto;
+}
+.story_panels_container::after {
+    content: "";
+    padding-bottom: 100%;
+}
+.story_content {
+    height: 100%;
+    max-height: 500px;
+    width: 100%;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+}

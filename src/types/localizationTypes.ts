@@ -10,6 +10,10 @@ export type TTranslation = {
     },
     aboutPage: {
         navigationButton: string
+    },
+    errorPage: {
+        pageNotFoundError: string,
+        buttonLabel: string
     }
 }
 

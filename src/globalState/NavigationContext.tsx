@@ -1,4 +1,11 @@
-import React, { useState, useContext, createContext } from "react";
+import React from "react";
+//----- Types -----//
+//----- Context -----//
+import { useContext, createContext } from "react";
+//----- Hooks and helpers -----//
+import { useState } from "react";
+//----- Components -----//
+//----- Configuration -----//
 
 type TNavigationContext = { currentPage: number, setCurrentPage: (currentPage: number) => void };
 
@@ -10,7 +17,7 @@ export const useNavigation = (): TNavigationContext => {
     return useContext(NavigationContext);
 }
 
-const NavigationProvider: React.FC = ({ children }) => {
+export const NavigationProvider: React.FC = ({ children }) => {
     const [currentPageNumber, setCurrentPageNumber] = useState<number>(0);
     const setCurrentPage = (currentPage: number) => {
         setCurrentPageNumber(currentPage);
@@ -21,5 +28,3 @@ const NavigationProvider: React.FC = ({ children }) => {
         </NavigationContext.Provider>
     );
 }
-
-export default NavigationProvider;

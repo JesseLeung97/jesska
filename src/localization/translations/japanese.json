@@ -8,5 +8,9 @@
     },
     "aboutPage": {
         "navigationButton": "概要"
+    },
+    "errorPage": {
+        "pageNotFoundError": "申し訳ございません。ページが見つかりません",
+        "buttonLabel": "ホームへ行こう"
     }
 }
