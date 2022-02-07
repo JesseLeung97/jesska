@@ -1,7 +1,5 @@
 # Jesska
 
----
-
 A showcase website for the Jesska series of slice of life comics.
 
 [The Site](jesska.io)
@@ -9,8 +7,6 @@ A showcase website for the Jesska series of slice of life comics.
 [Instagram](https://www.instagram.com/jesska.io/)
 
 ## Running this Application
-
----
 
 Within the project directory:
 
@@ -24,13 +20,9 @@ Builds the application for production
 
 ## Releases
 
-----
-
 `1.0.0` Current
 
 ## Future Roadmap, Desired Improvements, and Bugs
-
-----
 
 - Use local define file for routing and do not depend on api results
 
@@ -56,13 +48,9 @@ Builds the application for production
 
 ## Technical Design Overview
 
-----
-
 Jesska is currently built with a React front-end written in TypeScript, a Firebase Firestore database, and Firebase Storage for storing images.  The structure of Jesska's visual components is inspired by atomic design, organizing components into groups of relative complexity.  Outside of the visual components structure, Jesska is largely organized by groupings of related functionalty.  Application state is divided and maintained by several contexts such as theme, language, and loading state.  Each provides a named wrapper for  `useContext` that exposes the state to children which depend on it and if necessary, provides a means of updating the state.
 
 ## Application Flow Overview
-
------
 
 #### On Page Load
 
@@ -115,8 +103,6 @@ Jesska is currently built with a React front-end written in TypeScript, a Fireba
   - `Database Error` If an error occurs during the api call, an error page will be display but a link home will not be included
 
 ## Project Structure
-
-----
 
 #### Parent Folder Structure
 
@@ -176,8 +162,6 @@ Code for a component's local state, functionality, and html structure are locate
 A context provider component, named `useContext` wrapper, and a function for toggling the language / theme are created in the `Context.tsx` file.  Translations are defined in JSON objects inside the `translations` folder while themes are stored in JSON like objects in `themes`.  The `translations.ts` file and `themes.ts` file create an object containing all translations and themes.
 
 ## Story Structure
-
------
 
 ```
 |–– Story
@@ -246,8 +230,6 @@ Translations include a reference to their language and are structured into trans
 
 ## Notable Hooks and Helpers
 
------
-
 `useReferredState`
 
 Use `useRef` in the style of `useState`.  This is used in the `ScrollHandler` so that the `EventListener` assigned to the scroll object can use the current state.
@@ -272,7 +254,7 @@ A custom router which mocks the `BrowserRouter` component supplied by `react-rou
 
 ## Code Style Overview
 
-----
+
 
 #### Types
 
