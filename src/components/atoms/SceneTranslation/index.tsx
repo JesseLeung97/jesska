@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import classes from "./styles.module.css";
 //----- Types -----//
 import { TLanguages } from "types/localizationTypes";
 //----- Context -----//
 import { useLanguage } from "localization/LocalizationContext";
 //----- Hooks and helpers -----//
+import { useState } from "react";
 //----- Components -----//
 import { Image } from "components/atoms/Image";
 //----- Configuration -----//
@@ -18,16 +19,25 @@ export const SceneTranslation: React.FC<SceneTranslationProps> = ({
     englishTranslation,
     japaneseTranslation
 }) => {
-    const language = useLanguage().language.currentLanguage;
+
+    const { language } = useLanguage();
 
     const setTranslation = (currentLanguage: TLanguages): React.ReactNode => {
         return (
             <>
                 { currentLanguage === "english" && 
-                    <Image useParentSizing={true} className={classes.translation_image} image={englishTranslation} size={"large"} />
+                    <Image 
+                        useParentSizing={true} 
+                        className={classes.translation_image} 
+                        image={englishTranslation} 
+                        size={"large"} />
                 }
                 { currentLanguage === "japanese" && 
-                    <Image useParentSizing={true} className={classes.translation_image} image={japaneseTranslation} size={"large"} />
+                    <Image 
+                        useParentSizing={true} 
+                        className={classes.translation_image} 
+                        image={japaneseTranslation} 
+                        size={"large"} />
                 }
             </>
         );
@@ -35,7 +45,7 @@ export const SceneTranslation: React.FC<SceneTranslationProps> = ({
 
     return (
         <div className={classes.translation_container}>
-            { setTranslation(language) }
+            { setTranslation(language.currentLanguage) }
         </div>
     );
 }

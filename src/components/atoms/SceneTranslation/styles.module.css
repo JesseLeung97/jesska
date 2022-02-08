@@ -1,5 +1,6 @@
-.image_inner {
-    height: 100%;
+.translation_image {
+    display: block;
+    height: auto;
     width: 100%;
 }
 .translation_container {

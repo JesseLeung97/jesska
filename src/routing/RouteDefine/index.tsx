@@ -54,7 +54,7 @@ export const RouteDefine: React.FC = () => {
                     <AboutPage key={"/about"} relativeLocation={"after"}/>
                     {storyList.map((story, index) => {
                         return(
-                            <Story key={story.storyUrlExtension} firestoreStory={story} loadingType={getLoadingProcedure(storyIndex, index)} relativeLocation={"after"} />
+                            <Story key={story.storyUrlExtension} firestoreStory={story} loadingType={getLoadingProcedure(storyIndex, index)} relativeLocation={"after"} selfIndex={index}/>
                         );
                     })}
                 </>
@@ -80,7 +80,7 @@ export const RouteDefine: React.FC = () => {
                             <AboutPage key={"/about"} relativeLocation={"after"}/>
                             {storyList.map((story, index) => {
                                 return(
-                                    <Story key={story.storyUrlExtension} firestoreStory={story} loadingType={index === 0 || index === 1 ? "background" : "placeholder"} relativeLocation={"after"} />
+                                    <Story key={story.storyUrlExtension} firestoreStory={story} loadingType={index === 0 || index === 1 ? "background" : "placeholder"} relativeLocation={"after"} selfIndex={index} />
                                 );
                             })}
                         </>

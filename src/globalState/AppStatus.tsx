@@ -34,7 +34,6 @@ export const AppStatusProvider: React.FC = ({ children }) => {
     }
 
     const updateStorageStatus = (storageStatus: TStorageStatus): void => {
-        console.log("updating status", databaseStatus);
         setStorageStatus(storageStatus);
     }
 

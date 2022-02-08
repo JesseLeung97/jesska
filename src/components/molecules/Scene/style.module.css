@@ -8,4 +8,5 @@
 }
 .scene_image {
     position: unset !important;
+    display: block;
 }

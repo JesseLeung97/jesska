@@ -30,8 +30,6 @@ export const Text: React.FC<TextProps> = ({
     isAnimated = isAnimated ?? false;
     const isAnimtedClass = isAnimated ? classes.text_animation : "";
 
-    console.log( theme.themeName );
-
     return (
         <label 
             className={`${className} ${classes[size ?? "medium"]} ${isAnimtedClass}`}

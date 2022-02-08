@@ -69,7 +69,7 @@ export const ScrollHandler: React.FC = ({ children })  => {
         }
     }
 
-    const throttleDelay = 200;
+    const throttleDelay = 400;
     let isThrottled = false;
     const updateHistoryThrottle = () => {
         if(!isThrottled) {

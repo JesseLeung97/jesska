@@ -3,7 +3,6 @@
     width: clamp(300px, 90%, 500px);
     opacity: 0;
     transition: 0.1s opacity ease-out;
-    
 }
 .story_panels_container::after {
     content: "";
@@ -11,4 +10,7 @@
 }
 .loaded {
     opacity: 1;
+}
+.swipe_container {
+    display: inline-block;
 }

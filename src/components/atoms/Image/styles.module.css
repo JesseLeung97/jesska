@@ -9,6 +9,7 @@
 .image_inner {
     height: 100%;
     width: 100%;
+    display: block;
 }
 .small {
     width: clamp(150px, 70%, 250px);
