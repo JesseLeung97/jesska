@@ -28,13 +28,13 @@ Items in the rest of this document marked with `**` are due for update in future
 
 - Use local define file for routing and do not depend on api results
 
-- Clean up useEffects
+- Clean up `useEffects`
   
   - Add dependencies to all use effects to avoid "lying" about dependencies
   
   - Move functions that don't rely on data streams outside the components to avoid new intances on re-renders
   
-  - Each render has its own useEffect => rewrite code to reflect this pattern
+  - Each render has its own `useEffect` => rewrite code to reflect this pattern
   
   - https://overreacted.io/a-complete-guide-to-useeffect/
 
