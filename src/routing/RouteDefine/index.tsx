@@ -17,6 +17,17 @@ import { AboutPage } from "components/staticPages/AboutPage";
 import { navigateToError } from "hooks/hooks";
 //----- Configuration -----/\
 
+const getLoadingProcedure = (storyIndex: number, index: number): TComponentLoadProcedure => {
+    switch(Math.abs(index - storyIndex)) {
+        case 1:
+            return "background";
+        case 0:
+            return "visible";
+        default: 
+            return "placeholder";
+    }
+}
+
 export const RouteDefine: React.FC = () => {
 
     const { storyList } = useStoryList();
@@ -31,17 +42,6 @@ export const RouteDefine: React.FC = () => {
             //navigate("/error");
         }
     }, [pathname]);
-
-    const getLoadingProcedure = (storyIndex: number, index: number): TComponentLoadProcedure => {
-        switch(Math.abs(index - storyIndex)) {
-            case 1:
-                return "background";
-            case 0:
-                return "visible";
-            default: 
-                return "placeholder";
-        }
-    }
 
     const createStoryIfExists = (): React.ReactNode => {
         if(storyList.length < 1) {
@@ -72,7 +72,7 @@ export const RouteDefine: React.FC = () => {
             <Routes>
                 <Route 
                     path="/" 
-                    element={<Navigate to="/stories/jessessocks" />}/>
+                    element={<Navigate to="/stories/jessesjapanese" />}/>
                 <Route
                     path="/about"
                     element={

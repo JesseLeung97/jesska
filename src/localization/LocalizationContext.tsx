@@ -1,6 +1,6 @@
 import React from "react";
 //----- Types -----//
-import { TTranslation } from "types/localizationTypes";
+import { TTranslation, THeadLanguages } from "types/localizationTypes";
 //----- Context -----//
 import { useContext, createContext } from "react";
 //----- Hooks and helpers -----//
@@ -20,8 +20,11 @@ export const useLanguage = (): TLanguageContext => {
 }
 
 export const TranslationProvider: React.FC = ({ children }) => {
+    const [headLanguage, setHeadLanguage] = useState<THeadLanguages>("en");
     const [language, setLanguage] = useState<TTranslation>(translations.english);
     const switchLanguage = () => {
+        const headLanguage: THeadLanguages = language === translations.english ? "jp" : "en";
+        document.documentElement.lang = headLanguage;
         setLanguage(language === translations.english ? translations.japanese : translations.english);
     }
     return (

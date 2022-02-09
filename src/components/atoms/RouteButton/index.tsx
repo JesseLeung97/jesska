@@ -23,13 +23,14 @@ export const RouteButton: React.FC<RouteButtonProps> = ({
     const { theme } = useTheme();
 
     return (
-        <Link 
-            to={urlExtension}
-            className={className}
-            style={{color: theme.colors.primaryTextColor}}>
-            <Text>
-                {routeName}
-            </Text>
-        </Link>
+        <div className={`${classes.route_button_container} ${className}`}>
+            <Link 
+                to={urlExtension}
+                style={{color: theme.colors.primaryTextColor}}>
+                <Text className={classes.route_button_text}>
+                    {routeName}
+                </Text>
+            </Link>
+        </div>
     );
 }

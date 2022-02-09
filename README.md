@@ -24,7 +24,29 @@ Builds the application for production
 
 ## Future Roadmap, Desired Improvements, and Bugs
 
+Items in the rest of this document marked with `**` are due for update in future versions
+
 - Use local define file for routing and do not depend on api results
+
+- Clean up useEffects
+  
+  - Add dependencies to all use effects to avoid "lying" about dependencies
+  
+  - Move functions that don't rely on data streams outside the components to avoid new intances on re-renders
+  
+  - Each render has its own useEffect => rewrite code to reflect this pattern
+  
+  - https://overreacted.io/a-complete-guide-to-useeffect/
+
+- Clean up css separataion
+  
+  - Try to move all css to components inside the visual components folder
+    
+    - Route define feels like it shouldn't have css
+  
+  - Adjust where css passes are passed to children as props
+
+- On traversal using route buttons, the scroll handler should not adjust the url
 
 - Admin panel
   
@@ -35,6 +57,10 @@ Builds the application for production
   - Instagram and Twitter bot to automatically post an update when a new story is published through the admin panel
 
 - Email form for inquiries and to report errors
+
+- Include GraphQL to type-check database queries and responses
+  
+  - This is currently done by casting api responses to pre-defined types
 
 - Add CDN for images to decrease loading time
 
@@ -56,9 +82,9 @@ Jesska is currently built with a React front-end written in TypeScript, a Fireba
 
 - Set the application's loading context to the `visualStoriesLoading` loading state
 
-- Query database for currently active stories
+- **Query database for currently active stories
 
-- Create the routes in the`StoryNavigation` component based on the returned story list
+- **Create the routes in the`StoryNavigation` component based on the returned story list
 
 - Create `Story` components for each story in the story list
   
@@ -161,7 +187,7 @@ Code for a component's local state, functionality, and html structure are locate
 
 A context provider component, named `useContext` wrapper, and a function for toggling the language / theme are created in the `Context.tsx` file.  Translations are defined in JSON objects inside the `translations` folder while themes are stored in JSON like objects in `themes`.  The `translations.ts` file and `themes.ts` file create an object containing all translations and themes.
 
-## Story Structure
+## **Story Structure
 
 ```
 |–– Story
@@ -176,11 +202,9 @@ An identical Jesska story structure is used in the storage bucket, database, and
 
 ## Notable Types
 
-
-
 The types used in Jesska are prepended with `T` for easy understanding.
 
-#### TStory
+#### **TStory
 
 ```typescript
 type TStory = {
@@ -234,13 +258,19 @@ Translations include a reference to their language and are structured into trans
 
 Use `useRef` in the style of `useState`.  This is used in the `ScrollHandler` so that the `EventListener` assigned to the scroll object can use the current state.
 
-`useInitialize`
+
+
+**`useInitialize`
 
 A wrapper for `useEffect` with an empty dependency array.  Used primarily for organization and visual differentiation between initialization focused `useEffect`s and continuosly listening `useEffect`s.
+
+
 
 `use[ContextName]` 
 
 A wrapper for `useContext` to more easily distinguish which context is being used.
+
+
 
 `BrowserRouter` 
 
