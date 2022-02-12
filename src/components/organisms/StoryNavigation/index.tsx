@@ -37,7 +37,6 @@ const getIsActiveClassName = (numberOfStories: number, currentIndex: number, sto
     maximumIndex = maximumIndex + currentIndex + halfConcurrentlyVisible;
     if(maximumIndex > limitIndex) {
         minimumIndex = minimumIndex - (maximumIndex - limitIndex);
-        console.log(minimumIndex);
         maximumIndex = limitIndex;
     }
     
@@ -61,22 +60,20 @@ export const StoryNavigation: React.FC<StoryNavigationProps> = ({}) => {
     const { currentPage } = useNavigation();
     const currentStoryName = pathname.substring(8);
     const isError = pathname === "/error";
-    const [currentPageLocal, setCurrentPageLocal] = useState<number>();
-
-    useEffect(() => {
-        setCurrentPageLocal(currentPage);
-    }, [currentPage]);
 
     return (
         <>
-        <div className={`${classes.story_navigation_container} ${isError ? classes.error_hide : ""}`}>
+        <div className={`
+            ${classes.story_navigation_container} 
+            ${isError ? classes.error_hide : ""}`}>
             <div id={"story_navigation_scroll_handler"} className={classes.story_navigation_container_inner}>
                 <RouteButton
                     className={`
                         ${classes.navigation_item} 
                         ${classes[getIsActiveClassName(storyList.length + 1, currentPage, 0)]} 
                         ${classes[getCurrentSceneClassName(currentPage, 0)]}`}
-                    routeName={"about"}
+                    isActive={currentPage === 0}
+                    routeName={language.aboutPage.navigationButton}
                     urlExtension={"/about"}>
                 </RouteButton>
                 <>
@@ -87,15 +84,18 @@ export const StoryNavigation: React.FC<StoryNavigationProps> = ({}) => {
                                     ${classes.navigation_item} 
                                     ${classes[getCurrentSceneClassName(currentPage, index + 1)]}
                                     ${classes[getIsActiveClassName(storyList.length + 1, currentPage, index + 1)]}`}
+                                isActive={currentPage === index + 1}
                                 key={`routeButton_${story.storyID}`}
-                                routeName={story.storyNameEnglish}
+                                routeName={language.currentLanguage === "english" ? story.storyNameEnglish : story.storyNameJapanese}
                                 urlExtension={`/stories${story.storyUrlExtension}`}>
-                                {story.storyDate}
                             </RouteButton>
                         );
                     })} 
                 </>
             </div>
+            <span 
+                className={classes.story_navigation_container_after} 
+                style={{backgroundColor: theme.colors.sideMenu}}/>
         </div>
         </>
     );

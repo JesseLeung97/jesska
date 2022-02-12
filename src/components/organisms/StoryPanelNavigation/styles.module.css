@@ -2,3 +2,14 @@
     display: block;
     margin-top: 20px;
 }
+.inner_container {
+    display: block;
+}
+.current_page_container {
+    display: inline-block;
+    width: 60px;
+    text-align: center;
+}
+.page_label {
+    font-weight: bold;
+}

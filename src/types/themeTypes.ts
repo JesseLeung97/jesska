@@ -6,12 +6,14 @@ export type TColorTheme = {
 }
 
 export type TColors = {
-    primaryTextColor: string,
-    secondaryTextColor: string,
-    backgroundColor: string,
-    foregroundColor: string,
+    primaryText: string,
+    secondaryText: string,
+    background: string,
+    foreground: string,
     backgroundGradient: string,
     toggleTheme: string,
     toggleThemeHover: string,
-    headerBackground: string
+    headerBackground: string,
+    sideMenu: string,
+    activeRoute: string
 }

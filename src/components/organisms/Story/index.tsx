@@ -152,10 +152,6 @@ export const Story: React.FC<StoryProps> = ({
         }
     }
 
-    const testOnClick = (iter: number) => {
-        console.log("testing scene  ", iter);
-    }
-
     return (
         <ContentWrapper>
             <StoryLoadingProvider storyLength={story.scenes.length} onStoryLoad={onStoryLoadingComplete}>
@@ -172,10 +168,10 @@ export const Story: React.FC<StoryProps> = ({
                                 sceneIndex={index}
                                 currentSceneIndex={currentPageLocal}/>
                         )}
-                        </span>
+                    </span>
+                    
                     <StoryPanelNavigation
                         story={story}
-                        navigationButtonClick={testOnClick}
                         currentPage={currentPageLocal}
                         setCurrentPage={setCurrentPageLocal}/>
                 </div>

@@ -45,11 +45,11 @@ const NotFound: React.FC = () => {
                 <Text size={"large"}>{language.errorPage.pageNotFoundError}</Text>
             </div>    
             <Link 
-                to="/" 
+                to="/stories/jessesjapanese" 
                 className={classes.home_button_link}>
                 <div 
                     className={classes.home_button_container}
-                    style={{background: hoverState === "hoverEnd" ? theme.colors.toggleTheme : theme.colors.toggleThemeHover, color: theme.colors.secondaryTextColor}}
+                    style={{background: hoverState === "hoverEnd" ? theme.colors.toggleTheme : theme.colors.toggleThemeHover, color: theme.colors.secondaryText}}
                     onMouseOver={() => setHoverState("hoverStart")}
                     onMouseOut={() => setHoverState("hoverEnd")}>
                     <Text color={"secondary"} className={classes.home_button}>
@@ -99,11 +99,11 @@ const General: React.FC = () => {
                 <Text size={"large"}>{language.errorPage.pageNotFoundError}</Text>
             </div>    
             <Link 
-                to="/" 
+                to="/stories/jessesjapanese" 
                 className={classes.home_button_link}>
                 <div 
                     className={classes.home_button_container}
-                    style={{background: hoverState === "hoverEnd" ? theme.colors.toggleTheme : theme.colors.toggleThemeHover, color: theme.colors.secondaryTextColor}}
+                    style={{background: hoverState === "hoverEnd" ? theme.colors.toggleTheme : theme.colors.toggleThemeHover, color: theme.colors.secondaryText}}
                     onMouseOver={() => setHoverState("hoverStart")}
                     onMouseOut={() => setHoverState("hoverEnd")}>
                     <Text color={"secondary"} className={classes.home_button}>

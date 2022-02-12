@@ -4,6 +4,7 @@
     width: 100%;
     z-index: 1;
     backdrop-filter: blur(10px);
+    transition: 0.2s background ease-out;
 }
 .header_inner_container {
     width: clamp(300px, 90%, 900px);
@@ -11,7 +12,26 @@
     display: flex;
 }
 .toggle_buttons_container {
+    width: 100%;
     margin: auto 0 auto auto;
     display: flex;
+}
+.logo_container {
+    margin-left: 0;
+    padding-bottom: 8px;
+    height: 40px;
+    width: 80px;
+}
+.toggle_container {
+    display: flex;
     gap: 10px;
+    height: 100%;
+    margin: auto 0 auto auto;
+}
+
+@media screen and (min-width: 700px) {
+    .logo_container {
+        height: 60px;
+        width: 120px;
+    }
 }

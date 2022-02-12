@@ -2,4 +2,5 @@
     text-align: center;
     width: 100%;
     position: relative;
+    transition: 0.2s background ease-out;
 }

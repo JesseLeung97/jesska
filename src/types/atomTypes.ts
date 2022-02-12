@@ -4,17 +4,31 @@ import { TThemeName } from "types/themeTypes";
 
 export type TAtomSize = "small" | "medium" | "large";
 
+export type TAtomButtonPlacement = "left" | "right";
+
 const atomColorType = [
     "primary",
-    "secondary"
+    "secondary",
+    "toggle",
+    "toggleHover",
+    "sideMenu",
+    "activeRoute"
 ] as const;
 const dark = [
-    darkTheme.colors.primaryTextColor,
-    darkTheme.colors.secondaryTextColor
+    darkTheme.colors.primaryText,
+    darkTheme.colors.secondaryText,
+    darkTheme.colors.toggleTheme,
+    darkTheme.colors.toggleThemeHover,
+    darkTheme.colors.sideMenu,
+    darkTheme.colors.activeRoute
 ];
 const light = [
-    lightTheme.colors.primaryTextColor,
-    lightTheme.colors.secondaryTextColor
+    lightTheme.colors.primaryText,
+    lightTheme.colors.secondaryText,
+    lightTheme.colors.toggleTheme,
+    lightTheme.colors.toggleThemeHover,
+    lightTheme.colors.sideMenu,
+    lightTheme.colors.activeRoute
 ];
 const textColors = {
     dark,

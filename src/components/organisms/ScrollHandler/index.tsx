@@ -59,7 +59,7 @@ export const ScrollHandler: React.FC = ({ children })  => {
             return;
         }
         const storyIndex = 1 + storyList.findIndex((story) => (pathname === `/stories${story.storyUrlExtension}`));
-        if(storyIndex > -1) {
+        if(storyIndex > 0) {
             if(isFirstScroll) {
                 setCurrentPage(storyIndex);
                 setCurrentPageLocal(storyIndex);

@@ -3,18 +3,21 @@
 }
 .story_navigation_container {
     height: calc(80vh - 56px);  
-    width: 60%;
-    top: calc(10vh + 56px);
-    bottom: 10vh;
-    position: relative;
-    border-right: 5px solid white;
+    width: clamp(300px, 90%, 900px);
+    top: -18vh;
+    right: 10px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    position: fixed;
+    transition: 0.3s ease all;
+    pointer-events: none;
 }
 .story_navigation_container_inner {
     height: 100%;
     position: absolute;
     right: 0;
     display: flex;
-    flex-direction: column;
+flex-direction: column;
 }
 .navigation_item {
     height: 0px;
@@ -26,16 +29,6 @@
     flex: 0;
     opacity: 0;
 }
-.navigation_item:after {
-    content: "";
-    position: absolute;
-    right: -30px;
-    height: 5px;
-    width: 20px;
-    border-radius: 10px 0 0 10px;
-    background: white;
-    transition: 0.3s all ease-out;
-}
 .navigation_item::visited {
     text-decoration: none;
 }
@@ -43,18 +36,49 @@
     cursor: pointer;
 }
 .visible_route_button {
-    opacity: 1;
+    opacity: 0;
     transition: 0.3s all ease-out;
-    flex-basis: 0;
-    flex-grow: 1;
 }
 .inactive_text {
     opacity: 0;
 }
 .active_story {
-    margin-right: 50px;
+    opacity: 1;
+    flex-basis: 0;
+    flex-grow: 1;
+    cursor: default;
 }
-.active_story:after {
-    width: 40px;
-    right: -50px;
+.story_navigation_container_after {
+    opacity: 0;
+}
+
+@media screen and (min-width: 700px) {
+    .story_navigation_container {
+        position: relative;
+        width: 100%;
+        top: calc(10vh + 56px);
+        bottom: 10vh;
+        left: unset;
+        right: unset;
+        transform: unset;
+        pointer-events: all;
+    }
+    .navigation_item {
+        font-weight: normal;
+    }
+    .active_story,
+    .visible_route_button {
+        flex-basis: 0;
+        flex-grow: 1;
+        opacity: 1;
+    }
+    .story_navigation_container_after {
+        display: inline-block;
+        height: calc(80vh - 56px);
+        width: 5px;
+        position: relative;
+        right: calc(-50% + 2.5px);
+        border-radius: 8px;
+        opacity: 1;
+    }
 }

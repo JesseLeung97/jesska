@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "components/molecules/ToggleButton/styles.module.css";
 //----- Types -----//
 //----- Context -----//
@@ -7,8 +7,12 @@ import { useTheme } from "theme/ThemeContext";
 //----- Components -----//
 //----- Configuration -----//
 
+type TToggleState = "icon_1" | "icon_2";
+type THoverState = "hoverStart" | "hoverEnd";
+
 interface ToggleButtonProps {
     className?: string,
+    inputState?: TToggleState,
     toggleName: string,
     iconToggle_1: string,
     iconToggle_2?: string,
@@ -19,6 +23,7 @@ interface ToggleButtonProps {
 
 export const ToggleButton: React.FC<ToggleButtonProps> = ({
     className,
+    inputState,
     toggleName,
     iconToggle_1,
     iconToggle_2,
@@ -28,12 +33,14 @@ export const ToggleButton: React.FC<ToggleButtonProps> = ({
 }) => {
 
     const { theme } = useTheme();
-
-    type TToggleState = "icon_1" | "icon_2";
-    type THoverState = "hoverStart" | "hoverEnd";
-
-    const [currentToggle, setCurrentToggle] = useState<TToggleState>("icon_1");
+    const [currentToggle, setCurrentToggle] = useState<TToggleState>(inputState ?? "icon_1");
     const [hoverState, setHoverState] = useState<THoverState>("hoverEnd");
+   
+    useEffect(() => {
+        const firstState = inputState ?? "icon_1";
+        setCurrentToggle(firstState);
+    },[inputState]);
+
     const flipState = () => {
         document.getElementById(`${toggleName}_icon_1`)?.animate([
             { transform: "translateY(0px)", opacity: 1, easing: "ease-out"},

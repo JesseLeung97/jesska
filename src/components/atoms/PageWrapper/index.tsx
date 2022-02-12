@@ -18,7 +18,7 @@ export const PageWrapper: React.FC<PageWrapperProps> = ({ children }) => {
     return (
         <div 
             className={classes.outer_container}
-            style={{background: theme.colors.backgroundColor}}>
+            style={{background: theme.colors.background}}>
             { children }
         </div>
     );

@@ -10,6 +10,43 @@
 .route_button_container:hover {
     
 }
+.route_button_text {
+    font-size: 24px;
+    font-weight: bold;
+}
 .route_button_text:hover {
     cursor: pointer;
+}
+.after_item {
+    position: absolute;
+    right: -30px;
+    height: 5px;
+    width: 20px;
+    border-radius: 10px;
+    background: white;
+    transition: 0.3s all ease-out;
+}
+.active_route {
+    width: 40px;
+}
+.route_link {
+    margin-right: 0;
+    transition: 0.3s all ease-out;
+}
+.active_route_link {
+    margin-right: 20px;
+}
+.active_route_button_text:hover,
+.active_route:hover,
+.active_route_link:hover {
+    cursor: default;
+}
+
+@media screen and (min-width: 700px) {
+    .after_item {
+        border-radius: 10px 0 0 10px;
+    }
+    .route_button_text {
+        font-size: clamp(18px, 2.5vw, 24px);
+    }
 }

@@ -1,7 +1,15 @@
 .inner_container {
-    height: 100vh;
+    height: 100%;
     width: 100%;
     display: grid;
     place-items: center;
     scroll-snap-align: start;
+}
+
+@media screen and (min-width: 700px) {
+    .inner_container {
+        height: 100vh;
+        align-items: center;
+        justify-items: left;
+    }
 }

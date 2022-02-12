@@ -2,7 +2,7 @@
     transition: 0.3s all ease-out;
 }
 .scroll_handler {
-    width: clamp(310px, 100%, 1000px);
+    width: clamp(310px, 100%, 800px);
     margin: 0 auto;
     flex: 1;
     overflow-y: hidden;
