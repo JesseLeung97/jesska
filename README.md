@@ -70,9 +70,9 @@ Items in the rest of this document marked with `**` are due for update in future
   
   - This is currently done by casting api responses to pre-defined types
 
-- Add CDN for images to decrease loading time
+- ~~Add CDN for images to decrease loading time~~ Hosted on Firebase
 
-- Add a NodeJS backend so the site can be hosted on a cloud instance instead of Netlifly
+- Add a NodeJS backend so the site can be hosted on a cloud instance instead of ~~Netlify~~ Hosted on Firebase
   
   - Allow for editing of local files on site server such that routes can be delcaratively defined and maintained  
 
@@ -266,19 +266,13 @@ Translations include a reference to their language and are structured into trans
 
 Use `useRef` in the style of `useState`.  This is used in the `ScrollHandler` so that the `EventListener` assigned to the scroll object can use the current state.
 
-
-
 **`useInitialize`
 
 A wrapper for `useEffect` with an empty dependency array.  Used primarily for organization and visual differentiation between initialization focused `useEffect`s and continuosly listening `useEffect`s.
 
-
-
 `use[ContextName]` 
 
 A wrapper for `useContext` to more easily distinguish which context is being used.
-
-
 
 `BrowserRouter` 
 
