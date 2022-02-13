@@ -66,7 +66,10 @@ export const ToggleButton: React.FC<ToggleButtonProps> = ({
                     onClick={flipState}
                     onMouseOver={() => setHoverState("hoverStart")}
                     onMouseOut={() => setHoverState("hoverEnd")}>
-                    <img className={classes.icon} src={currentToggle === "icon_1" ? iconToggle_1 : iconToggle_2} />
+                    <img 
+                        className={classes.icon} 
+                        src={currentToggle === "icon_1" ? iconToggle_1 : iconToggle_2} 
+                        loading={"lazy"}/>
                 </button>
             </div>
         </>

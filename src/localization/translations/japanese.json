@@ -7,11 +7,11 @@
         "toggleLanguage": "言語"
     },
     "aboutPage": {
-        "navigationButton": "概要",
+        "navigationButton": "ジェシカって?",
         "nameJesse": "ジェシー",
-        "descriptionJesse": "",
+        "descriptionJesse": "ジェシカのディベロッパー兼テクニカル担当。プログラミングをしていない時は、どこかの山の中で熊から逃げ回っているかも。",
         "nameMomo": "ももか",
-        "descriptionMomo": ""
+        "descriptionMomo": "ジェシカの才能あるイラストレーター兼デザイナー。彼女のスタイルとオーラを見ると韓国女優と勘違いするかもしれないが、見た目とは裏腹にしっかりしている。"
     },
     "errorPage": {
         "pageNotFoundError": "申し訳ございません。ページが見つかりません",

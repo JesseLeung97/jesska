@@ -27,7 +27,8 @@ export const Image: React.FC<ImageProps> = ({
             <img
                 className={classes.image_inner} 
                 src={image}
-                onLoad={onLoad} />
+                onLoad={onLoad}
+                loading={"lazy"}/>
         </div>
     );
 }

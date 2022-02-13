@@ -26,6 +26,10 @@ Builds the application for production
 
 Items in the rest of this document marked with `**` are due for update in future versions
 
+- Fix the footer causing scroll issues, what the heck man
+
+- Click for scroll down on mobile
+
 - Use local define file for routing and do not depend on api results
 
 - Clean up `useEffects`
@@ -47,6 +51,10 @@ Items in the rest of this document marked with `**` are due for update in future
   - Adjust where css passes are passed to children as props
 
 - On traversal using route buttons, the scroll handler should not adjust the url
+
+- Sometimes the height is limited to the about page
+
+- Clean up the project structure in regards to the scroll handler and route define sections
 
 - Admin panel
   

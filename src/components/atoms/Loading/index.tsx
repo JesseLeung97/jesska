@@ -16,7 +16,10 @@ export const Loading: React.FC = () => {
     return (
         <div className={classes.overlay_container}>
             <div className={classes.animation_container}>
-                <img className={classes.image_container} src={theme.themeName === "dark" ? danceWhite : danceBlack}></img>
+                <img 
+                    className={classes.image_container} 
+                    src={theme.themeName === "dark" ? danceWhite : danceBlack} 
+                    loading={"lazy"}/>
             </div>
         </div>
     );

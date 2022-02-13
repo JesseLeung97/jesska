@@ -21,8 +21,8 @@ export const ProfileImage: React.FC<ProfileImageProps> = ({
                 className={`
                     ${classes.image_inner}
                     ${transformDirection === "left" ? classes.image_inner_left : classes.image_inner_right}`} 
-                src={image}>
-            </img>
+                src={image} 
+                loading={"lazy"}/>
         </div>
     );
 }

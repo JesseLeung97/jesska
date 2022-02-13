@@ -37,11 +37,11 @@ export const Header: React.FC = () => {
             <div className={classes.header_inner_container}>
                 <div className={classes.toggle_buttons_container}>
                     <div className={classes.logo_container}>
-                        <Link to="/">
+                        <a href="https://www.jesska.io">
                             <Image 
                                 image={getLogoColor(theme.themeName)}
                                 useParentSizing={true}/>
-                        </Link>
+                        </a>
                     </div>
                     <div className={classes.toggle_container}>
                         <ToggleButton toggleName={"themeToggle"} inputState={theme.themeName === "dark" ? "icon_1" : "icon_2"} iconToggle_1={sunIcon} iconToggle_2={moonIcon} toggleFunction={toggleTheme} />
