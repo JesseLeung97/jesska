@@ -14,7 +14,6 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { Story } from "components/organisms/Story";
 import { ErrorPage } from "components/staticPages/ErrorPage";
 import { AboutPage } from "components/staticPages/AboutPage";
-import { navigateToError } from "hooks/hooks";
 //----- Configuration -----/\
 
 const getLoadingProcedure = (storyIndex: number, index: number): TComponentLoadProcedure => {

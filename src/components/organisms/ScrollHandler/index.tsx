@@ -58,6 +58,9 @@ export const ScrollHandler: React.FC = ({ children })  => {
             setIsFirstScrollComplete(true);
             return;
         }
+        if(pathname === "/about") {
+            storyContainer.scrollTo({top: 0, left: 0, behavior: "smooth"});
+        }
         const storyIndex = 1 + storyList.findIndex((story) => (pathname === `/stories${story.storyUrlExtension}`));
         if(storyIndex > 0) {
             if(isFirstScroll) {
@@ -92,7 +95,7 @@ export const ScrollHandler: React.FC = ({ children })  => {
         const isPageChangeUp = scrollTop > currentPageLocal.current * windowHeight  + (0.5 * windowHeight);
         const isPageChangeDown = scrollTop < currentPageLocal.current * windowHeight - (0.5 * windowHeight);
 
-        if(isPageChangeUp) {      
+        if(isPageChangeUp) {    
             if(!isFirstScrollComplete.current ||  storyListRef.current === undefined || storyListRef.current.length < 1) {
                 setIsFirstScrollComplete(true);
                 return;

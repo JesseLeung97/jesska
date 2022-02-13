@@ -1,11 +1,17 @@
 import React, { useEffect } from "react";
 import classes from "components/staticPages/AboutPage/styles.module.css";
-import errorJesse from "assets/errors/error_jesse.png";
-import errorMomo from "assets/errors/error_momo.png";
-import { ContentWrapper } from "components/atoms/ContentWrapper";
+//----- Types -----//
+//----- Context -----//
+import { useLanguage } from "localization/LocalizationContext";
 import { useLoading } from "globalState/LoadingContext";
+//----- Hooks and helpers -----//
+//----- Components -----//
+import { ContentWrapper } from "components/atoms/ContentWrapper";
 import { TLoadingLocation } from "types/loadingTypes";
 import { Profile } from "components/molecules/Profile";
+//----- Configuration -----//
+import profileJesse from "assets/profile/profileJesse.png";
+import profileMomo from "assets/profile/profileMomo.png";
 
 interface AboutPageProps {
     relativeLocation: TLoadingLocation
@@ -16,6 +22,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
 }) => {
 
     const { subscribeToLoading } = useLoading();
+    const { language } = useLanguage();
 
     useEffect(() => {
         subscribeToLoading(
@@ -34,8 +41,17 @@ export const AboutPage: React.FC<AboutPageProps> = ({
     return (
         <ContentWrapper>
             <div className={classes.profile_cards_container}>
-                <Profile profileImage={errorJesse}/>
-                <Profile profileImage={errorMomo}/>
+                <Profile 
+                    creator="jesse"
+                    profileImage={profileJesse}
+                    name={language.aboutPage.nameJesse}
+                    description={language.aboutPage.descriptionJesse}
+                    />
+                <Profile 
+                    creator="momo"
+                    profileImage={profileMomo}
+                    name={language.aboutPage.nameMomo}
+                    description={language.aboutPage.descriptionMomo}/>
             </div>
         </ContentWrapper>
     );

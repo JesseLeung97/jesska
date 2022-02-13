@@ -37,7 +37,7 @@ export const Header: React.FC = () => {
             <div className={classes.header_inner_container}>
                 <div className={classes.toggle_buttons_container}>
                     <div className={classes.logo_container}>
-                        <Link to={"/stories/jessesjapanese"}>
+                        <Link to="/">
                             <Image 
                                 image={getLogoColor(theme.themeName)}
                                 useParentSizing={true}/>

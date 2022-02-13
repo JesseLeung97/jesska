@@ -4,7 +4,7 @@ import { TComponentLoading, TApplicationLoading, TLoading, TLoadedComponent, TLo
 //----- Context -----//
 import { useContext, createContext } from "react";
 //----- Hooks and helpers -----//
-import { useEffect, useState } from "react";
+import { useState } from "react";
 //----- Components -----//
 //----- Configuration -----//
 

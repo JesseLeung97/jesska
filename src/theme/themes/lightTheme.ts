@@ -10,7 +10,8 @@ const lightColors: TColors = {
     toggleThemeHover: "rgb(108, 71, 194)",
     headerBackground: "rgba(255, 255, 255, 0.25)",
     sideMenu: "rgb(93, 100, 120)",
-    activeRoute: "rgb(128, 90, 213)"
+    activeRoute: "rgb(128, 90, 213)",
+    footerBackground: "rgb(237, 226, 212)"
 }
 
 const lightTheme: TColorTheme = {

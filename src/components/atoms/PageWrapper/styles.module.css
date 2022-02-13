@@ -1,5 +1,6 @@
 .outer_container {
     text-align: center;
+    height: 100%;
     width: 100%;
     position: relative;
     transition: 0.2s background ease-out;

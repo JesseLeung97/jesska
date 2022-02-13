@@ -11,7 +11,11 @@ export type TTranslation = {
         toggleLanguage: string
     },
     aboutPage: {
-        navigationButton: string
+        navigationButton: string,
+        nameJesse: string,
+        descriptionJesse: string,
+        nameMomo: string,
+        descriptionMomo: string
     },
     errorPage: {
         pageNotFoundError: string,

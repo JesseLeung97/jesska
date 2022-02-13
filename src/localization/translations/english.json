@@ -7,7 +7,11 @@
         "toggleLanguage": "language"
     },
     "aboutPage": {
-        "navigationButton": "About"
+        "navigationButton": "About",
+        "nameJesse": "Jesse",
+        "descriptionJesse": "Developer and technical half of Jesska.  If he's not programming, he's probably somewhere in the mountains running away from bears.",
+        "nameMomo": "Momoka",
+        "descriptionMomo": "Jesska's talented illustrator and designer.  Though her style and aura may lead you to mistake her for a Korean actress, she's as down to earth as they come. "
     },
     "errorPage": {
         "pageNotFoundError": "Sorry, we couldn't find the page you're looking for",

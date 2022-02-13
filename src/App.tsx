@@ -12,6 +12,7 @@ import { StoryNavigation } from "components/organisms/StoryNavigation";
 import { Loading } from "components/atoms/Loading";
 import { ScrollHandler } from "components/organisms/ScrollHandler";
 import { Header } from "components/organisms/Header";
+import { Footer } from "components/organisms/Footer";
 //----- Configuration -----//
 
 const App: React.FC = () => {
@@ -30,7 +31,8 @@ const App: React.FC = () => {
             <RouteDefine />
             <StoryNavigation />
           </ScrollHandler>
-        </NavigationProvider> 
+        </NavigationProvider>
+        <Footer key={"/footer"} /> 
     </PageWrapper>
   );
 }

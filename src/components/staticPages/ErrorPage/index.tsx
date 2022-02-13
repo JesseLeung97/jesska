@@ -3,7 +3,7 @@ import classes from "components/staticPages/ErrorPage/styles.module.css";
 //----- Types -----//
 //----- Context -----//
 import { useLoading } from "globalState/LoadingContext";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useLanguage } from "localization/LocalizationContext";
 import { useTheme } from "theme/ThemeContext";
 //----- Hooks and helpers -----//
@@ -12,10 +12,8 @@ import { useState } from "react";
 //----- Components -----//
 import { ContentWrapper } from "components/atoms/ContentWrapper";
 import { Text } from "components/atoms/Text";
-import { Image } from "components/atoms/Image";
 import { Loading } from "components/atoms/Loading";
 import { lazy, Suspense } from "react";
-import { Link } from "react-router-dom";
 import PageNotFound from "components/molecules/ErrorImages/PageNotFound";
 //----- Configuration -----//
 
@@ -23,17 +21,20 @@ const GeneralJesse = lazy(() => import("components/molecules/ErrorImages/General
 const GeneralMomo = lazy(() => import("components/molecules/ErrorImages/GeneralMomo"));
 
 export type TErrorType = "pageNotFound" | "maintenance" | "general";
+type THoverState = "hoverStart" | "hoverEnd";
 
 const coinFlip = (): boolean => {
     return Math.floor(Math.random() * 2) == 0;
+}
+
+const goHome = (): void => {
+    window.location.href = "/";
 }
 
 const NotFound: React.FC = () => {
 
     const { language } = useLanguage();
     const { theme } = useTheme();
-
-    type THoverState = "hoverStart" | "hoverEnd";
     const [hoverState, setHoverState] = useState<THoverState>("hoverEnd");
 
     return (
@@ -44,9 +45,9 @@ const NotFound: React.FC = () => {
             <div className={classes.error_text_container}>
                 <Text size={"large"}>{language.errorPage.pageNotFoundError}</Text>
             </div>    
-            <Link 
-                to="/stories/jessesjapanese" 
-                className={classes.home_button_link}>
+            <button
+                className={`${classes.home_button_link} ${classes.button_no_styles}`}
+                onClick={goHome}>
                 <div 
                     className={classes.home_button_container}
                     style={{background: hoverState === "hoverEnd" ? theme.colors.toggleTheme : theme.colors.toggleThemeHover, color: theme.colors.secondaryText}}
@@ -56,7 +57,7 @@ const NotFound: React.FC = () => {
                         {language.errorPage.buttonLabel}
                     </Text>
                 </div>
-            </Link>
+            </button>
         </>
     );
 }
@@ -98,9 +99,9 @@ const General: React.FC = () => {
             <div className={classes.error_text_container}>
                 <Text size={"large"}>{language.errorPage.pageNotFoundError}</Text>
             </div>    
-            <Link 
-                to="/stories/jessesjapanese" 
-                className={classes.home_button_link}>
+            <button
+                className={`${classes.home_button_link} ${classes.button_no_styles}`}
+                onClick={goHome}>
                 <div 
                     className={classes.home_button_container}
                     style={{background: hoverState === "hoverEnd" ? theme.colors.toggleTheme : theme.colors.toggleThemeHover, color: theme.colors.secondaryText}}
@@ -110,7 +111,7 @@ const General: React.FC = () => {
                         {language.errorPage.buttonLabel}
                     </Text>
                 </div>
-            </Link>
+            </button>
         </>
     );
 }
@@ -143,12 +144,12 @@ export const ErrorPage: React.FC = () => {
     });
 
     return (
-        <ContentWrapper>
+        <div className={classes.content_wrapper}>
             <div className={classes.error_inner_container}>
                 { error === "general" && <General />}
                 { error === "pageNotFound" && <NotFound />}
                 { error === "maintenance" && <Maintenance />}
             </div>
-        </ContentWrapper>
+        </div>
     );
 }

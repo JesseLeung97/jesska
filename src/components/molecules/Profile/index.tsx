@@ -10,18 +10,38 @@ import { Text } from "components/atoms/Text";
 //----- Configuration -----//
 
 interface ProfileProps {
-    profileImage: string
+    creator: "jesse" | "momo",
+    profileImage: string,
+    name: string,
+    description: string
 }
 
 export const Profile: React.FC<ProfileProps> = ({
+    creator,
     profileImage,
+    name,
+    description
 }) => {
+
     return (
         <div className={`${classes.profile_container}`}>
-            <ProfileImage image={profileImage} />
+            <ProfileImage 
+                image={profileImage} 
+                transformDirection={creator === "jesse" ? "right" : "left"}/>
             <div className={classes.bio_container}>
-                <Title isAnimated={true}>This is the profile title</Title>
-                <Text className={classes.bio_text_container} isAnimated={true}>This is the profile text</Text>
+                <Title 
+                    className={classes.name_text}
+                    color={"toggle"}
+                    isAnimated={true}>
+                    {name}
+                </Title>
+                <Text 
+                    className={`${classes.bio_text_container} ${classes.bio_text}`} 
+                    size={"small"}
+                    color={"sideMenu"}
+                    isAnimated={true}>
+                    {description}
+                </Text>
             </div>
         </div>
     );

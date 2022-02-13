@@ -1,8 +1,6 @@
 .profile_container {
     display: flex;
     flex-direction: column;
-    background: lightskyblue;
-    gap: 25px;
 }
 .bio_container {
     flex: 1;
@@ -14,8 +12,13 @@
 .bio_text_container {
     flex: 1;
 }
+.bio_text,
+.name_text {
+    font-weight: bold;
+}
 @media screen and (min-width: 700px) {
     .profile_container {
         flex-direction: row;
+        gap: 25px;
     }
 }

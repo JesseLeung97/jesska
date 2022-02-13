@@ -1,0 +1,46 @@
+.footer_container {
+    height: 150px;
+    width: 100%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    transition: 0.2s all ease-out;
+}
+.footer_inner_container {
+    height: 100px;
+    width: clamp(300px, 90%, 900px);
+    display: flex;
+}
+.link_container,
+.logo_container {
+    flex: 1;
+}
+.link_container {
+    display: flex;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.footer_link {
+    display: block;
+    flex: 1;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.footer_link > label:hover {
+    cursor: pointer;
+}
+.footer_link:visited {
+    text-decoration: underline 1px solid inherit;
+}
+.footer_link:hover {
+    cursor: pointer;
+}
+
+@media screen and (min-width: 700px) {
+    .footer_container {
+        height: 200px;
+    }
+    .footer_inner_container {
+        height: 150px;
+    }
+}

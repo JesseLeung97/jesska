@@ -22,6 +22,10 @@ export const useReferredState = <T>(initialValue: T): [MutableRefObject<T>, Disp
     return [reference, setReferredState];
  }
 
+ //TODO
+ //Rewrite all useEffects to include dependencies they use
+ //Don't "lie" about the dependencies
+ //https://overreacted.io/a-complete-guide-to-useeffect/
  export const useInitialize = (initializeFunction: () => any) => useEffect(initializeFunction, []);
 
  export const navigateToError = (errorType?: TErrorType): void => {

@@ -1,14 +1,26 @@
 .image_outer {
     position: relative;
     margin: 0 auto;
-    width: clamp(100px, 70%, 200px);
+    width: clamp(75px, 60%, 175px);
 }
 .image_out:after {
     display: block;
     content: "";
-    padding-bottom: 100%;
+    padding-bottom: 50%;
 }
 .image_inner {
-    height: 100%;
     width: 100%;
+    transform: scale(1.5);
+}
+
+@media screen and (min-width: 700px) {
+    .image_outer {
+        overflow: hidden;
+    }
+    .image_inner_right {
+        transform: translateX(25%) translateY(25%) scale(1.5);
+    }
+    .image_inner_left {
+        transform: translateX(-25%) translateY(25%) scale(1.5);
+    }
 }

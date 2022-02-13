@@ -14,6 +14,7 @@ export type TColors = {
     toggleTheme: string,
     toggleThemeHover: string,
     headerBackground: string,
+    footerBackground: string,
     sideMenu: string,
     activeRoute: string
 }

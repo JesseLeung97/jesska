@@ -2,6 +2,7 @@
     transition: 0.3s all ease-out;
 }
 .scroll_handler {
+    height: 100%;
     width: clamp(310px, 100%, 800px);
     margin: 0 auto;
     flex: 1;
