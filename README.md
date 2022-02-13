@@ -22,6 +22,20 @@ Builds the application for production
 
 `1.0.0` Current
 
+## Branch Overview
+
+`main` 
+
+The master branch.  This branch will be updated after each release when all hotfixes are completed.
+
+`production`
+
+The live branch.  Development branches will be merged before each release.
+
+`development`
+
+A branch to collect various bug fixes, features, or changes to the codebase.  Development branches should branch off and merge into the main development branch.
+
 ## Future Roadmap, Desired Improvements, and Bugs
 
 Items in the rest of this document marked with `**` are due for update in future versions
