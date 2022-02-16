@@ -138,7 +138,7 @@ export const Story: React.FC<StoryProps> = ({
 
     const handleTouchEnd = (e: React.TouchEvent<HTMLSpanElement>) => {
         if (touchStart - touchEnd > 5) {
-            const newPageIndex = Math.min(storyList.length, currentPageLocal + 1);
+            const newPageIndex = Math.min(story.scenes.length - 1, currentPageLocal + 1);
             if(currentPageLocal !== newPageIndex) {
                 setCurrentPageLocal(newPageIndex);
             }
