@@ -71,7 +71,7 @@ export const RouteDefine: React.FC = () => {
             <Routes>
                 <Route 
                     path="/" 
-                    element={<Navigate to="/stories/jessesjapanese" />}/>
+                    element={<Navigate to="/stories/jessedoesntdrinkenough" />}/>
                 <Route
                     path="/about"
                     element={

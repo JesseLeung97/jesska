@@ -5,7 +5,7 @@ import { TFirestoreScene, TFirestoreStory, TSceneGroupReference, TSceneReference
 import { useAppStatus } from "globalState/AppStatus";
 //----- Hooks and helpers -----//
 import { getDownloadURL } from "firebase/storage";
-import { getDocs, collection, where, query, QuerySnapshot, DocumentData } from "firebase/firestore";
+import { getDocs, collection, where, query, orderBy, QuerySnapshot, DocumentData } from "firebase/firestore";
 import { CreateSceneJapaneseReference, CreateSceneImageReference, CreateSceneEnglishReference } from "database/storyReferences";
 import { navigateToError } from "hooks/hooks";
 //----- Components -----//
@@ -33,7 +33,10 @@ const createSceneGroup = async (sceneGroup: TSceneGroupReference): Promise<Array
 export const getStoryList = async (includeInactive: boolean = false): Promise<TFirestoreStory[]> => {
     let storyList = Array<TFirestoreStory>();
     const storyCollectionReference = collection(firebaseFirestore, "stories");
-    let storyListQuery = query(storyCollectionReference, where("isActive", "==", true));
+    let storyListQuery = query(
+        storyCollectionReference, 
+        where("isActive", "==", true),
+        orderBy("storyOrderIndex", "desc"));
     if (includeInactive) {
         storyListQuery = query(storyCollectionReference);
     }

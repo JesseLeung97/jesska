@@ -22,7 +22,7 @@ const getCurrentSceneClassName = (currentIndex: number, storyIndex: number): str
 }
 
 const getIsActiveClassName = (numberOfStories: number, currentIndex: number, storyIndex: number): string => {
-    if(/*numberOfStories < 8*/ false) {
+    if(numberOfStories < 5) {
         return "visible_route_button";
     }
 
