@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/jesska/static/css/main.8d74fa68.css",
+    "main.js": "/jesska/static/js/main.4add42f0.js",
+    "static/js/746.c765f8a3.chunk.js": "/jesska/static/js/746.c765f8a3.chunk.js",
+    "static/js/80.bbc2b608.chunk.js": "/jesska/static/js/80.bbc2b608.chunk.js",
+    "static/media/bumbumdanceBlack.png": "/jesska/static/media/bumbumdanceBlack.03e3b355c03bfb118cdc.png",
+    "static/media/bumbumdanceWhite.png": "/jesska/static/media/bumbumdanceWhite.336e98805c704f55e19c.png",
+    "static/media/profileMomo.png": "/jesska/static/media/profileMomo.3d9740a549922b3298ed.png",
+    "static/media/profileJesse.png": "/jesska/static/media/profileJesse.c6895922fb1fd194e7ba.png",
+    "static/media/logoFooter.png": "/jesska/static/media/logoFooter.90dfc739d71192644447.png",
+    "static/media/error_pageNotFound.png": "/jesska/static/media/error_pageNotFound.dc0f00036120ebae3163.png",
+    "static/media/error_momo.png": "/jesska/static/media/error_momo.e07302b18a99c73c7f94.png",
+    "static/media/error_jesse.png": "/jesska/static/media/error_jesse.be53b14a1f281f4a84c9.png",
+    "static/media/logoYellow.png": "/jesska/static/media/logoYellow.864c8b70a263774ae5f5.png",
+    "static/media/logoPurple.png": "/jesska/static/media/logoPurple.2e785afb2fca5776c40e.png",
+    "static/media/error_pageNotFound_english.png": "/jesska/static/media/error_pageNotFound_english.7ff750a2591b56d45145.png",
+    "static/media/error_pageNotFound_japanese.png": "/jesska/static/media/error_pageNotFound_japanese.d344ba9aa89eb7d19413.png",
+    "static/media/usFlag.svg": "/jesska/static/media/usFlag.e26bd55cc2ec7d7b8fdb934f2201f5a5.svg",
+    "static/media/rightArrow.svg": "/jesska/static/media/rightArrow.5d3d1c414025212a1506f6ba046d8229.svg",
+    "static/media/leftArrow.svg": "/jesska/static/media/leftArrow.c688ab6dc042159b8b191d30ff8ee908.svg",
+    "static/media/sunIcon.svg": "/jesska/static/media/sunIcon.c1d14c4cdf019217bec080425d39c81f.svg",
+    "index.html": "/jesska/index.html",
+    "static/media/moonIcon.svg": "/jesska/static/media/moonIcon.6eb118a585eec4ade539ade907d7ffa0.svg",
+    "static/media/jpFlag.svg": "/jesska/static/media/jpFlag.1ebf97cb9bd9676e86dd0bbffa0bc0b3.svg",
+    "main.8d74fa68.css.map": "/jesska/static/css/main.8d74fa68.css.map",
+    "main.4add42f0.js.map": "/jesska/static/js/main.4add42f0.js.map",
+    "746.c765f8a3.chunk.js.map": "/jesska/static/js/746.c765f8a3.chunk.js.map",
+    "80.bbc2b608.chunk.js.map": "/jesska/static/js/80.bbc2b608.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8d74fa68.css",
+    "static/js/main.4add42f0.js"
+  ]
+}

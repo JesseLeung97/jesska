@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkjesska=self.webpackChunkjesska||[]).push([[80],{81:function(e,n,s){s.r(n),s.d(n,{default:function(){return u}});s(791);var a=s.p+"static/media/error_momo.e07302b18a99c73c7f94.png",r=s(33),t=s(184),u=function(){return(0,t.jsx)(r.E,{image:a})}}}]);
+//# sourceMappingURL=80.bbc2b608.chunk.js.map
